@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understand Investing | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span data-i18n="brandName">MoneySmart</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" data-i18n="navHome">Home</a>
+          <a href="index.html#progress" data-i18n="navProgress">Progress</a>
+          <a href="dashboard.html" data-i18n="navDashboard">Dashboard</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-pill-group" aria-label="Language selection">
+            <button type="button" class="lang-pill active" data-lang="en">English</button>
+            <button type="button" class="lang-pill" data-lang="te">తెలుగు</button>
+            <button type="button" class="lang-pill" data-lang="hi">हिंदी</button>
+          </div>
+          <button type="button" id="audioToggleBtn" class="audio-toggle-btn" aria-label="Toggle game sound effects">
+            <span id="audioIcon">🔊</span> <span id="audioText">Sound ON</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="container">
+        <!-- 1. Header & Progress Stepper -->
+        <section class="invest-hero">
+          <div class="pillar-hero-top">
+            <div class="pillar-hero-title-area">
+              <span class="stage-badge" style="background: rgba(255,255,255,0.2); color: #ffffff;">Pillar 3 of 4</span>
+              <h1 id="investHeaderTitle">Understand Investing</h1>
+              <p class="pillar-tagline" id="investHeaderTagline">Put Your Money to Work: Compounding, Risk & Return</p>
+            </div>
+            <div class="pillar-header-controls">
+              <div id="marketMasterBadgeChip" class="badge-status-chip">
+                <span>🔒</span> <span id="badgeChipLabel">Badge: Market Master</span>
+              </div>
+              <div class="badge-status-chip" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff;">
+                <span>⭐</span> <span id="investPointsCounter">0 Points</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar & Stepper -->
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
+              <span id="investProgressText">Module 3 of 4: 0% Complete</span>
+              <span id="investActiveStageLabel">Feature 1: ₹10,000 Investment Game</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="investProgressFill" class="pillar-progress-bar" style="background: linear-gradient(90deg, #6366f1, #10b981);"></div>
+            </div>
+          </div>
+
+          <!-- 4-Stage Stepper Navigation -->
+          <nav class="stepper-nav" aria-label="Pillar stages">
+            <button type="button" class="stepper-step active" data-target="stage1">
+              <span class="stepper-num">1</span>
+              <div>
+                <strong style="display:block;">Investment Game</strong>
+                <small style="opacity:0.8;">₹10,000 Virtual Portfolio</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage2">
+              <span class="stepper-num">2</span>
+              <div>
+                <strong style="display:block;">Market Surprise</strong>
+                <small style="opacity:0.8;">Volatility & Recovery</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage3">
+              <span class="stepper-num">3</span>
+              <div>
+                <strong style="display:block;">Risk vs Return</strong>
+                <small style="opacity:0.8;">Scenario Decision Tool</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage4">
+              <span class="stepper-num">4</span>
+              <div>
+                <strong style="display:block;">Checkpoint & Reward</strong>
+                <small style="opacity:0.8;">Quiz & Market Badge</small>
+              </div>
+            </button>
+          </nav>
+        </section>
+
+        <!-- FEATURE 1: Investment Game (₹10,000 Virtual Portfolio) -->
+        <section id="stage1" class="stage-section">
+          <span class="stage-badge">Feature 1 • The ₹10,000 Investment Game</span>
+          <h2 class="stage-title" id="stage1Title">Build Your ₹10,000 Virtual Portfolio</h2>
+          <p class="stage-desc" id="stage1Desc">
+            You receive <strong>₹10,000 in virtual money</strong>. Choose how much to allocate between Stocks, Mutual Funds, and Fixed Deposits to balance risk and growth!
+          </p>
+
+          <div class="invest-game-container">
+            <!-- Left: Sliders & Allocation -->
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h3 style="margin: 0; font-size: 1.15rem; color: var(--navy);">Allocate Your ₹10,000:</h3>
+                <span id="unallocatedBadge" class="stage-badge" style="background:#e0f2fe; color:#0369a1;">Unallocated: ₹0</span>
+              </div>
+
+              <!-- Visual Portfolio Bar -->
+              <div class="portfolio-chart-bar">
+                <div id="portBarStocks" class="port-seg-stocks" style="width: 40%;" title="Stocks"></div>
+                <div id="portBarMF" class="port-seg-mf" style="width: 35%;" title="Mutual Funds"></div>
+                <div id="portBarFD" class="port-seg-fd" style="width: 25%;" title="Fixed Deposits"></div>
+              </div>
+
+              <!-- 1. Stocks Slider -->
+              <div class="portfolio-slider-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div>
+                    <strong style="color: #4338ca;">📈 Individual Stocks (Equity)</strong>
+                    <small style="display: block; color: #64748b;">High Risk • Expected Return: ~14%</small>
+                  </div>
+                  <strong id="stocksValText" style="color: #4338ca; font-size: 1.15rem;">₹4,000 (40%)</strong>
+                </div>
+                <input type="range" id="stocksSlider" min="0" max="10000" step="500" value="4000" style="accent-color: #6366f1; width: 100%;" />
+              </div>
+
+              <!-- 2. Mutual Funds Slider -->
+              <div class="portfolio-slider-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div>
+                    <strong style="color: #0891b2;">🧺 Mutual Funds (Index & Diversified)</strong>
+                    <small style="display: block; color: #64748b;">Moderate Risk • Expected Return: ~11%</small>
+                  </div>
+                  <strong id="mfValText" style="color: #0891b2; font-size: 1.15rem;">₹3,500 (35%)</strong>
+                </div>
+                <input type="range" id="mfSlider" min="0" max="10000" step="500" value="3500" style="accent-color: #06b6d4; width: 100%;" />
+              </div>
+
+              <!-- 3. Fixed Deposit Slider -->
+              <div class="portfolio-slider-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <div>
+                    <strong style="color: #059669;">🛡️ Bank Fixed Deposits (FDs)</strong>
+                    <small style="display: block; color: #64748b;">Zero Capital Risk • Guaranteed Return: ~6.5%</small>
+                  </div>
+                  <strong id="fdValText" style="color: #059669; font-size: 1.15rem;">₹2,500 (25%)</strong>
+                </div>
+                <input type="range" id="fdSlider" min="0" max="10000" step="500" value="2500" style="accent-color: #10b981; width: 100%;" />
+              </div>
+
+              <!-- Strategy Presets -->
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;">
+                <button type="button" class="lang-pill port-preset-btn active" data-s="4000" data-m="3500" data-f="2500">Balanced (40/35/25)</button>
+                <button type="button" class="lang-pill port-preset-btn" data-s="7000" data-m="2000" data-f="1000">Aggressive Growth</button>
+                <button type="button" class="lang-pill port-preset-btn" data-s="1000" data-m="3000" data-f="6000">Conservative Safety</button>
+              </div>
+            </div>
+
+            <!-- Right: Projected Growth Hub -->
+            <div class="compound-total-box" style="border-color: #c7d2fe; background: linear-gradient(135deg, #eef2ff, #f8fafc);">
+              <span class="stage-badge" style="background: #e0e7ff; color: #3730a3; align-self: flex-start;">
+                Portfolio Health & Projection
+              </span>
+
+              <div style="margin: 14px 0 16px;">
+                <span style="font-size: 0.85rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Weighted Annual Return</span>
+                <strong id="portfolioWeightedRate" style="display: block; font-size: 2rem; color: #3730a3;">11.08%</strong>
+                <span id="portfolioRiskProfile" style="font-size: 0.88rem; font-weight: 600; color: #4f46e5;">Risk Profile: Moderate Balanced</span>
+              </div>
+
+              <!-- Projection Cards -->
+              <div class="leak-metrics-grid" style="margin: 0 0 16px;">
+                <div class="leak-metric-card">
+                  <span>In 1 Year</span>
+                  <strong id="proj1Year">₹11,108</strong>
+                  <small style="color: #059669; font-weight: 600;">+₹1,108</small>
+                </div>
+                <div class="leak-metric-card">
+                  <span>In 3 Years</span>
+                  <strong id="proj3Year">₹13,707</strong>
+                  <small style="color: #059669; font-weight: 600;">+₹3,707</small>
+                </div>
+                <div class="leak-metric-card" style="border-color: #818cf8; background: #ffffff;">
+                  <span>In 5 Years</span>
+                  <strong id="proj5Year" style="color: #3730a3;">₹16,914</strong>
+                  <small style="color: #3730a3; font-weight: 700;">+₹6,914 (+69%)</small>
+                </div>
+              </div>
+
+              <button type="button" class="button primary-button" id="confirmPortfolioBtn" style="background: #4338ca; width: 100%;">
+                Lock Portfolio & Move to Market Surprise (Stage 2) ↓
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- FEATURE 2: Market Surprise Challenge -->
+        <section id="stage2" class="stage-section">
+          <span class="stage-badge">Feature 2 • Market Surprise Challenge</span>
+          <h2 class="stage-title" id="stage2Title">Market Volatility: Experiencing Real Market Risk</h2>
+          <p class="stage-desc" id="stage2Desc">
+            Example: You invest <strong>₹2,000 in virtual stocks</strong>. Suddenly, a global market correction hits! How does volatility affect your money?
+          </p>
+
+          <div class="market-surprise-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+              <div>
+                <strong style="font-size: 1.15rem; color: #0f3d4c;">Hypothetical Case: ₹2,000 Invested in Virtual Stocks</strong>
+                <p style="margin: 2px 0 0; color: #64748b; font-size: 0.9rem;">
+                  Watch what happens when market sentiment swings!
+                </p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button type="button" class="button primary-button" id="triggerMarketShockBtn" style="background: #dc2626;">
+                  ⚡ Trigger Market Fall (-10%)
+                </button>
+                <button type="button" class="button secondary-button" id="triggerMarketReboundBtn" disabled>
+                  📈 Fast-Forward 2 Years (Recovery)
+                </button>
+              </div>
+            </div>
+
+            <!-- Volatility Meter Display -->
+            <div class="volatility-meter-box">
+              <div class="vol-card">
+                <span style="font-size: 0.8rem; color: #64748b; font-weight: 700;">STARTING INVESTMENT</span>
+                <strong style="color: #0f3d4c;">₹2,000</strong>
+                <small style="color: #64748b;">Day 1 Entry Price</small>
+              </div>
+
+              <div class="vol-card" id="marketSurpriseStatusCard">
+                <span style="font-size: 0.8rem; color: #64748b; font-weight: 700;">MARKET EVENT</span>
+                <strong id="marketSurpriseLabel" style="color: #2563eb;">Normal Market</strong>
+                <small id="marketSurpriseSub">Awaiting Market Event</small>
+              </div>
+
+              <div class="vol-card" id="marketCurrentValueCard">
+                <span style="font-size: 0.8rem; color: #64748b; font-weight: 700;">CURRENT PORTFOLIO VALUE</span>
+                <strong id="marketCurrentValue" style="color: #059669;">₹2,000</strong>
+                <small id="marketChangePercent" style="font-weight: 700; color: #059669;">0% Gain/Loss</small>
+              </div>
+            </div>
+
+            <!-- Dynamic Market Lesson Alert -->
+            <div id="marketLessonNotice" class="consequence-feed-card feed-alert-success" style="margin-top: 18px;">
+              <span id="marketLessonIcon" style="font-size: 1.8rem;">💡</span>
+              <div id="marketLessonText">
+                Click <strong>"Trigger Market Fall (-10%)"</strong> to simulate what happens during economic corrections.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FEATURE 3: Risk vs. Return Challenge -->
+        <section id="stage3" class="stage-section">
+          <span class="stage-badge">Feature 3 • Risk vs. Return Challenge</span>
+          <h2 class="stage-title" id="stage3Title">Compare Two Investments: Choose Based on Situation</h2>
+          <p class="stage-desc" id="stage3Desc">
+            Higher potential return always demands higher risk tolerance. Match the right investment tool to each real-life student scenario!
+          </p>
+
+          <!-- 2 Investment Vehicles Comparison -->
+          <div class="risk-return-grid">
+            <div class="rr-card low-risk">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="tool-tag tool-tag-safe">🛡️ Low Risk</span>
+                <strong style="color: #059669;">~6.5% Annual Return</strong>
+              </div>
+              <h3 style="margin: 0 0 6px; font-size: 1.15rem; color: #065f46;">Option A: Bank Fixed Deposit / Govt Bond</h3>
+              <p style="font-size: 0.88rem; color: #334155; margin: 0 0 12px;">
+                Guaranteed capital safety. Principal never drops, regardless of market crashes.
+              </p>
+              <div class="tool-attr-row">
+                <span>Volatility:</span>
+                <strong style="color: #059669;">Zero (Stable)</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Best For:</span>
+                <strong style="color: #065f46;">Short-term goals (0–12 months)</strong>
+              </div>
+            </div>
+
+            <div class="rr-card high-risk">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="tool-tag" style="background:#ede9fe; color:#5b21b6;">⚡ High Risk</span>
+                <strong style="color: #4338ca;">~12% – 15% Annual Return</strong>
+              </div>
+              <h3 style="margin: 0 0 6px; font-size: 1.15rem; color: #3730a3;">Option B: Equity Index / Tech Stocks</h3>
+              <p style="font-size: 0.88rem; color: #334155; margin: 0 0 12px;">
+                Substantial long-term wealth growth, but experiences short-term swings of ±15% to ±25%.
+              </p>
+              <div class="tool-attr-row">
+                <span>Volatility:</span>
+                <strong style="color: #dc2626;">High (Swings up & down)</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Best For:</span>
+                <strong style="color: #4338ca;">Long-term goals (5+ years)</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Life Student Situations Selector -->
+          <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 16px; padding: 22px;">
+            <h3 style="margin: 0 0 14px; font-size: 1.15rem; color: var(--navy);">
+              Test Your Decision in 3 Student Situations:
+            </h3>
+
+            <!-- Situation 1 -->
+            <div class="quiz-q-card" style="margin-bottom: 16px;">
+              <span class="quiz-q-num">Situation 1 • Immediate Academic Deadline</span>
+              <div class="quiz-q-text">
+                Priya saved ₹3,000 for her college semester exam registration fee due in <strong>3 months</strong>. Which investment should she choose?
+              </div>
+              <button type="button" class="quiz-opt-btn rr-choice-btn" data-sit="1" data-opt="a">
+                <span>A) Option A: Bank Fixed Deposit (Low Risk, Safe Return)</span>
+              </button>
+              <button type="button" class="quiz-opt-btn rr-choice-btn" data-sit="1" data-opt="b">
+                <span>B) Option B: High-Risk Volatile Stocks (Seeking quick profit)</span>
+              </button>
+              <div class="quiz-feedback-box" id="sitFeedback-1" hidden></div>
+            </div>
+
+            <!-- Situation 2 -->
+            <div class="quiz-q-card" style="margin-bottom: 16px;">
+              <span class="quiz-q-num">Situation 2 • Long-Term Career Vision</span>
+              <div class="quiz-q-text">
+                Arjun is 17 and wants to build a wealth fund for his postgraduate studies or dream startup in <strong>6 years</strong>. Which option is best?
+              </div>
+              <button type="button" class="quiz-opt-btn rr-choice-btn" data-sit="2" data-opt="a">
+                <span>A) Option A: Bank Fixed Deposit (Zero fluctuation)</span>
+              </button>
+              <button type="button" class="quiz-opt-btn rr-choice-btn" data-sit="2" data-opt="b">
+                <span>B) Option B: Equity Index / Diversified Stocks (Riding short-term dips for high 6-year compound growth)</span>
+              </button>
+              <div class="quiz-feedback-box" id="sitFeedback-2" hidden></div>
+            </div>
+
+            <!-- Situation 3 -->
+            <div class="quiz-q-card">
+              <span class="quiz-q-num">Situation 3 • The Social Media Promise</span>
+              <div class="quiz-q-text">
+                An influencer on Instagram advertises: <em>"Guaranteed 200% returns in 7 days with ZERO risk!"</em> What is the financial reality?
+              </div>
+              <button type="button" class="quiz-opt-btn rr-choice-btn" data-sit="3" data-opt="a">
+                <span>A) It is legitimate; new technology makes zero-risk high returns possible.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn rr-choice-btn" data-sit="3" data-opt="b">
+                <span>B) It is a classic scam! In real finance, high returns always carry risk. "Zero-risk high return" does not exist.</span>
+              </button>
+              <div class="quiz-feedback-box" id="sitFeedback-3" hidden></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. STAGE 4: Checkpoint & Badge Unlock -->
+        <section id="stage4" class="stage-section">
+          <span class="stage-badge">Stage 4 of 4 • Checkpoint & Badge Reward</span>
+          <h2 class="stage-title" id="stage4Title">Stage 4: Investing Mastery Checkpoint</h2>
+          <p class="stage-desc" id="stage4Desc">
+            Demonstrate your command of investing principles to unlock the official "Market Master" badge!
+          </p>
+
+          <div class="checkpoint-quiz-grid">
+            <!-- Question 1 -->
+            <div class="quiz-q-card" data-q="1">
+              <div class="quiz-q-num">Question 1 of 3 • Volatility Patience</div>
+              <div class="quiz-q-text">
+                Your virtual stock investment falls from ₹2,000 to ₹1,800 due to a temporary market drop. What should an informed investor do?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Panic sell immediately to lock in the ₹200 loss.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Stay calm, avoid panic selling, and understand that quality investments recover over time.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Borrow money to buy lottery tickets.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-q-card" data-q="2">
+              <div class="quiz-q-num">Question 2 of 3 • The Power of Diversification</div>
+              <div class="quiz-q-text">
+                Why did spreading your ₹10,000 across Stocks, Mutual Funds, and Fixed Deposits protect your portfolio?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Because when stocks dipped, stable Fixed Deposits and Mutual Funds cushioned the overall impact.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Because banks give you free bonus cash when you buy 3 things.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) It doesn't help at all.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-q-card" data-q="3">
+              <div class="quiz-q-num">Question 3 of 3 • Time Horizon Rule</div>
+              <div class="quiz-q-text">
+                Which type of money should NEVER be invested into volatile stocks or crypto?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Long-term retirement savings for 25 years later.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Next month's college tuition fee or your emergency cushion.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Virtual simulator game tokens.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+          </div>
+
+          <!-- Achievement Unlock Box -->
+          <div id="achievementCard" class="achievement-celebration-card" hidden>
+            <div class="badge-art-icon" aria-hidden="true" style="background: linear-gradient(135deg, #4f46e5, #6366f1);">🏆</div>
+            <h3 style="color: #312e81; font-size: 1.6rem; margin: 0 0 8px;">
+              Badge Unlocked: Market Master!
+            </h3>
+            <p style="color: #3730a3; max-width: 600px; margin: 0 auto 18px; font-size: 1.05rem;">
+              Outstanding work! You've successfully mastered portfolio allocation, braved market volatility, and proved you understand the vital link between risk and return.
+            </p>
+            <div style="display: inline-flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap;">
+              <span class="badge-status-chip unlocked" style="background: #4f46e5; color: #ffffff;">
+                <span>✨</span> <span>+50 Points Added to Profile!</span>
+              </span>
+              <a href="dashboard.html" class="button secondary-button">
+                View in Progress Dashboard
+              </a>
+            </div>
+          </div>
+
+          <!-- Next Step CTA: Proceed to Pillar 4 -->
+          <div class="next-pillar-btn-card" style="background: linear-gradient(135deg, #082f49 0%, #0284c7 100%);">
+            <div>
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #7dd3fc; font-weight: 700;">
+                Next Learning Module
+              </span>
+              <h3 style="margin: 4px 0; color: #ffffff; font-size: 1.4rem;">
+                Pillar 4: Stay Financially Safe 🛡️
+              </h3>
+              <p style="margin: 0; color: #e2e8f0; font-size: 0.95rem;">
+                Protect your money from scams, fraud calls, phishing links, and fake UPI QR codes!
+              </p>
+            </div>
+            <a href="safety.html" class="button primary-button" style="background: #f0c75e; color: #0f3d4c; font-weight: 700; font-size: 1.05rem;">
+              Proceed to Stay Financially Safe →
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About</h3>
+          <p>MoneySmart helps students build real-world financial literacy without risking real money.</p>
+        </div>
+        <div>
+          <h3>Learning Modules</h3>
+          <ul>
+            <li><a href="budget.html">1. Plan & Budget</a></li>
+            <li><a href="savings.html">2. Save & Manage</a></li>
+            <li><a href="investing.html">3. Understand Investing</a></li>
+            <li><a href="safety.html">4. Stay Financially Safe</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Privacy</h3>
+          <p>Demo portfolios and scores are stored locally in your browser.</p>
+        </div>
+        <div>
+          <h3>Disclaimer</h3>
+          <p>This simulation is educational only, not professional investment advice.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="investing.js"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

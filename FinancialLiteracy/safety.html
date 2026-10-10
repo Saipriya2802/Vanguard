@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stay Financially Safe | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span data-i18n="brandName">MoneySmart</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" data-i18n="navHome">Home</a>
+          <a href="index.html#progress" data-i18n="navProgress">Progress</a>
+          <a href="dashboard.html" data-i18n="navDashboard">Dashboard</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-pill-group" aria-label="Language selection">
+            <button type="button" class="lang-pill active" data-lang="en">English</button>
+            <button type="button" class="lang-pill" data-lang="te">తెలుగు</button>
+            <button type="button" class="lang-pill" data-lang="hi">हिंदी</button>
+          </div>
+          <button type="button" id="audioToggleBtn" class="audio-toggle-btn" aria-label="Toggle game sound effects">
+            <span id="audioIcon">🔊</span> <span id="audioText">Sound ON</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="container">
+        <!-- 1. Header & Progress Stepper -->
+        <section class="safety-hero">
+          <div class="pillar-hero-top">
+            <div class="pillar-hero-title-area">
+              <span class="stage-badge" style="background: rgba(255,255,255,0.2); color: #ffffff;">Pillar 4 of 4</span>
+              <h1 id="safetyHeaderTitle">Stay Financially Safe 🛡️</h1>
+              <p class="pillar-tagline" id="safetyHeaderTagline">Recognize Scams, Shield Your UPI, Defend Your Money</p>
+            </div>
+            <div class="pillar-header-controls">
+              <div id="scamDetectiveBadgeChip" class="badge-status-chip">
+                <span>🔒</span> <span id="badgeChipLabel">Badge: Scam Detective</span>
+              </div>
+              <div class="badge-status-chip" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff;">
+                <span>⭐</span> <span id="safetyPointsCounter">0 Points</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar & Stepper -->
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
+              <span id="safetyProgressText">Module 4 of 4: 0% Complete</span>
+              <span id="safetyActiveStageLabel">Feature 1: Scam Detective</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="safetyProgressFill" class="pillar-progress-bar" style="background: linear-gradient(90deg, #0284c7, #0d9488);"></div>
+            </div>
+          </div>
+
+          <!-- 4-Stage Stepper Navigation -->
+          <nav class="stepper-nav" aria-label="Pillar stages">
+            <button type="button" class="stepper-step active" data-target="stage1">
+              <span class="stepper-num">1</span>
+              <div>
+                <strong style="display:block;">Scam Detective</strong>
+                <small style="opacity:0.8;">Spot Fake SMS & Links</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage2">
+              <span class="stepper-num">2</span>
+              <div>
+                <strong style="display:block;">Protect Your Money</strong>
+                <small style="opacity:0.8;">UPI & OTP Shield</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage3">
+              <span class="stepper-num">3</span>
+              <div>
+                <strong style="display:block;">Safe or Scam?</strong>
+                <small style="opacity:0.8;">Rapid Decider Arena</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage4">
+              <span class="stepper-num">4</span>
+              <div>
+                <strong style="display:block;">Checkpoint & Reward</strong>
+                <small style="opacity:0.8;">Detective Badge & Finish</small>
+              </div>
+            </button>
+          </nav>
+        </section>
+
+        <!-- FEATURE 1: Scam Detective (Identify Fake Messages, Links & Fraud Calls) -->
+        <section id="stage1" class="stage-section">
+          <span class="stage-badge">Feature 1 • Scam Detective</span>
+          <h2 class="stage-title" id="stage1Title">Scam Detective: Spot the 3 Red Flags</h2>
+          <p class="stage-desc" id="stage1Desc">
+            Fraudsters use panic, greed, and fake links to trick students. Inspect the phone screen below and tap on the <strong>3 Red Flags</strong> hidden in this message!
+          </p>
+
+          <div class="phone-mockup-frame">
+            <div class="phone-screen">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-bottom: 12px; font-weight: 700;">
+                <span>📱 Messages</span>
+                <span>Sender: <strong style="color: #dc2626;">VK-892301-ALERT</strong></span>
+              </div>
+
+              <!-- Scam Message Bubble with Clickable Clues -->
+              <div class="chat-bubble-scam">
+                <div style="font-size: 0.78rem; color: #991b1b; font-weight: 700; margin-bottom: 6px;">
+                  ⚠️ URGENT ELECTRICITY DISCONNECTION NOTICE
+                </div>
+                <p style="font-size: 0.88rem; color: #1e293b; line-height: 1.5; margin: 0 0 10px;">
+                  Dear Consumer, your electricity power connection will be 
+                  <span class="scam-clue-pill" data-clue="1">⚡ CUT TONIGHT AT 9:30 PM</span> 
+                  due to previous month unpaid bill of ₹1,420.
+                  To avoid disconnection, update payment immediately via 
+                  <span class="scam-clue-pill" data-clue="2">🌐 http://bijli-bill-quickpay.xyz</span>
+                  or call Electricity Officer at 
+                  <span class="scam-clue-pill" data-clue="3">📞 98210-99887</span>.
+                </p>
+                <div style="font-size: 0.72rem; color: #94a3b8; text-align: right;">Today, 8:14 PM</div>
+              </div>
+
+              <!-- Detective Progress Bar inside phone -->
+              <div style="background: #ffffff; border-radius: 12px; padding: 12px; border: 1px solid #cbd5e1;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                  <span>Red Flags Discovered:</span>
+                  <span id="cluesFoundCount" style="color: #dc2626;">0 of 3 Found</span>
+                </div>
+                <div id="clueExplanationBox" style="font-size: 0.8rem; color: #334155; min-height: 40px;">
+                  Tap the highlighted red-flag areas above to analyze the sender's deception!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="scamBustedBanner" class="consequence-feed-card feed-alert-success" style="display: none; max-width: 650px; margin: 0 auto;">
+            <span style="font-size: 2.2rem;">🕵️‍♂️</span>
+            <div>
+              <strong style="font-size: 1.05rem; display: block;">Scam Busted by Detective! (+15 Points)</strong>
+              <span style="font-size: 0.9rem;">
+                You uncovered all 3 classic scam patterns: Artificial Time Urgency, Fake Unofficial Domain, and Personal Mobile Number. You are ready for Feature 2!
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- FEATURE 2: Protect Your Money (UPI PIN & OTP Rules) -->
+        <section id="stage2" class="stage-section">
+          <span class="stage-badge">Feature 2 • Protect Your Money</span>
+          <h2 class="stage-title" id="stage2Title">Keep Your UPI PINs, OTPs, and Banking Details Safe</h2>
+          <p class="stage-desc" id="stage2Desc">
+            Learn the non-negotiable rules of digital banking safety through an authentic real-life simulation.
+          </p>
+
+          <!-- 3 Golden Security Commandments -->
+          <div class="rule-cards-grid" style="margin-bottom: 26px;">
+            <div class="rule-pill-box" style="background:#fef2f2; border: 1px solid #fecaca;">
+              <span class="rule-pill-tag" style="color:#b91c1c;">🔐 Golden Rule 1</span>
+              <strong style="color: #991b1b; font-size: 1.05rem;">UPI PIN is ONLY for SENDING Money</strong>
+              <p style="margin: 0; font-size: 0.85rem; color: #334155;">
+                You NEVER enter your UPI PIN to receive money or get a refund. Entering a PIN always DEBITS your account!
+              </p>
+            </div>
+
+            <div class="rule-pill-box" style="background:#fefce8; border: 1px solid #fef08a;">
+              <span class="rule-pill-tag" style="color:#a16207;">🔐 Golden Rule 2</span>
+              <strong style="color: #854d0e; font-size: 1.05rem;">OTPs are Strictly Private</strong>
+              <p style="margin: 0; font-size: 0.85rem; color: #334155;">
+                No legitimate bank officer, police, or courier company will ever ask for your bank OTP. Anyone asking for OTP is a scammer!
+              </p>
+            </div>
+
+            <div class="rule-pill-box" style="background:#f0fdf4; border: 1px solid #bbf7d0;">
+              <span class="rule-pill-tag" style="color:#15803d;">🔐 Golden Rule 3</span>
+              <strong style="color: #166534; font-size: 1.05rem;">Beware Screen Sharing Apps</strong>
+              <p style="margin: 0; font-size: 0.85rem; color: #334155;">
+                Never install apps like AnyDesk, RustDesk, or TeamViewer on requests from unknown callers. They view your screen and steal OTPs!
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive UPI QR Code Scam Simulator -->
+          <div style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 18px; padding: 24px; max-width: 680px; margin: 0 auto;">
+            <span class="stage-badge" style="background: #e0f2fe; color: #0369a1;">Interactive Real-Life Dilemma</span>
+            <h3 style="margin: 8px 0 6px; color: #0f3d4c; font-size: 1.2rem;">
+              The OLX "Scan QR to Receive Money" Trap
+            </h3>
+            <p style="color: #475569; font-size: 0.9rem; margin-bottom: 16px;">
+              You posted your old college engineering textbooks for sale for ₹1,200. A buyer messages:
+              <em>"I am sending you a payment QR code. Scan this QR code on Google Pay / PhonePe and enter your 6-digit UPI PIN to receive your ₹1,200 payment into your bank account immediately."</em>
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+              <button type="button" class="button secondary-button" id="upiChoiceTrapBtn" style="border-color: #f87171; color: #dc2626;">
+                Scan QR & Enter UPI PIN
+              </button>
+              <button type="button" class="button primary-button" id="upiChoiceSafeBtn" style="background: #059669;">
+                Refuse! UPI PIN is Never Needed to Receive Money
+              </button>
+            </div>
+
+            <div id="upiSimResultBox" style="margin-top: 16px; display: none;"></div>
+          </div>
+        </section>
+
+        <!-- FEATURE 3: Safe or Scam? Rapid Decider Arena -->
+        <section id="stage3" class="stage-section">
+          <span class="stage-badge">Feature 3 • Safe or Scam? Rapid Decider</span>
+          <h2 class="stage-title" id="stage3Title">Safe or Scam? Test Your Instincts</h2>
+          <p class="stage-desc" id="stage3Desc">
+            Decide whether each online shopping, payment, and investment scenario is SAFE or a SCAM!
+          </p>
+
+          <div class="decider-card-box">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #64748b; font-weight: 700; margin-bottom: 12px;">
+              <span id="deciderProgressText">Scenario 1 of 6</span>
+              <span id="deciderScoreText">Score: 0 / 6</span>
+            </div>
+
+            <div style="font-size: 3.2rem; margin-bottom: 10px;" id="deciderEmoji" aria-hidden="true">📦</div>
+            <h3 style="font-size: 1.25rem; color: #0f3d4c; margin: 0 0 8px;" id="deciderTitle">
+              Delivery Handover OTP
+            </h3>
+            <p style="color: #475569; font-size: 0.95rem; line-height: 1.5; margin: 0 0 20px;" id="deciderDesc">
+              A delivery person from Amazon/Flipkart hands you a physical parcel at your doorstep and asks for the 4-digit delivery completion OTP sent via SMS.
+            </p>
+
+            <div class="decider-actions-row">
+              <button type="button" class="decider-btn-safe" id="btnDecideSafe">
+                <span>🟢</span> <span>IT'S SAFE</span>
+              </button>
+              <button type="button" class="decider-btn-scam" id="btnDecideScam">
+                <span>🚨</span> <span>IT'S A SCAM</span>
+              </button>
+            </div>
+
+            <div id="deciderFeedbackNotice" style="min-height: 28px; margin-top: 14px; font-size: 0.9rem; font-weight: 600;"></div>
+          </div>
+        </section>
+
+        <!-- 4. STAGE 4: Checkpoint & Badge Unlock -->
+        <section id="stage4" class="stage-section">
+          <span class="stage-badge">Stage 4 of 4 • Checkpoint & Badge Reward</span>
+          <h2 class="stage-title" id="stage4Title">Stage 4: Financial Safety Checkpoint</h2>
+          <p class="stage-desc" id="stage4Desc">
+            Complete the 3 security scenarios below to prove your fraud defense skills and unlock the official "Scam Detective" badge!
+          </p>
+
+          <div class="checkpoint-quiz-grid">
+            <!-- Question 1 -->
+            <div class="quiz-q-card" data-q="1">
+              <div class="quiz-q-num">Question 1 of 3 • The Urgent Caller Trap</div>
+              <div class="quiz-q-text">
+                A caller claiming to be from your bank states your debit card will be blocked in 10 minutes unless you verify your 16-digit card number and CVV. What should you do?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Read out the numbers quickly before the card gets blocked.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Hang up immediately and call the official bank toll-free number printed on the back of your card.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Ask the caller to send an SMS so you can reply with your CVV.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-q-card" data-q="2">
+              <div class="quiz-q-num">Question 2 of 3 • Digital Arrest / Fake Police Calls</div>
+              <div class="quiz-q-text">
+                A video caller wearing a police uniform claims a package with illegal contraband was registered in your name and demands an immediate "clearance fine" via UPI. What is this?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Legitimate police procedure; pay immediately to avoid jail.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) A widespread "Digital Arrest" cyber extortion scam. Police never demand money transfers over video calls. Report to cybercrime.gov.in (1930)!</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Send half the amount and negotiate.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-q-card" data-q="3">
+              <div class="quiz-q-num">Question 3 of 3 • Safe Password Hygiene</div>
+              <div class="quiz-q-text">
+                Which of the following is the most secure practice for safeguarding your student banking and UPI accounts?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Using "123456" or your birth year as your UPI PIN because it is easy to remember.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) A unique strong password with biometric fingerprint / Two-Factor Authentication (2FA) and never sharing it with friends.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Writing your UPI PIN on the back of your debit card.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+          </div>
+
+          <!-- Achievement Unlock Box -->
+          <div id="achievementCard" class="achievement-celebration-card" hidden>
+            <div class="badge-art-icon" aria-hidden="true" style="background: linear-gradient(135deg, #0284c7, #0d9488);">🕵️‍♂️</div>
+            <h3 style="color: #0369a1; font-size: 1.6rem; margin: 0 0 8px;">
+              Badge Unlocked: Scam Detective! 🛡️
+            </h3>
+            <p style="color: #0c4a6e; max-width: 620px; margin: 0 auto 18px; font-size: 1.05rem;">
+              Spectacular achievement! You are now fully trained to spot financial red flags, protect your UPI credentials, and defend your money against cyber fraudsters.
+            </p>
+            <div style="display: inline-flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap;">
+              <span class="badge-status-chip unlocked" style="background: #0284c7; color: #ffffff;">
+                <span>✨</span> <span>+50 Points Added to Profile!</span>
+              </span>
+              <a href="dashboard.html" class="button secondary-button">
+                View in Progress Dashboard
+              </a>
+            </div>
+          </div>
+
+          <!-- Final Platform Milestone: Learning Champion Card -->
+          <div id="grandChampionCard" class="next-pillar-btn-card" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f766e 100%);">
+            <div>
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #fde047; font-weight: 700;">
+                🎓 Platform Milestone Completed!
+              </span>
+              <h3 style="margin: 4px 0; color: #ffffff; font-size: 1.5rem;">
+                All 4 MoneySmart Pillars Mastered!
+              </h3>
+              <p style="margin: 0; color: #e2e8f0; font-size: 0.95rem;">
+                You have journeyed through Budgeting, Saving, Investing, and Scam Safety. Your financial literacy foundation is complete!
+              </p>
+            </div>
+            <a href="dashboard.html" class="button primary-button" style="background: #f0c75e; color: #0f3d4c; font-weight: 700; font-size: 1.05rem;">
+              Go to Progress Dashboard →
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About</h3>
+          <p>MoneySmart empowers students to make safe, confident financial decisions.</p>
+        </div>
+        <div>
+          <h3>Learning Modules</h3>
+          <ul>
+            <li><a href="budget.html">1. Plan & Budget</a></li>
+            <li><a href="savings.html">2. Save & Manage</a></li>
+            <li><a href="investing.html">3. Understand Investing</a></li>
+            <li><a href="safety.html">4. Stay Financially Safe</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>National Cyber Helpline</h3>
+          <p>Report financial cyber fraud immediately to National Cybercrime Helpline <strong>1930</strong> or <strong>cybercrime.gov.in</strong>.</p>
+        </div>
+        <div>
+          <h3>Disclaimer</h3>
+          <p>Educational awareness content; does not replace official banking guidance.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="safety.js"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Save & Manage | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span data-i18n="brandName">MoneySmart</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" data-i18n="navHome">Home</a>
+          <a href="index.html#progress" data-i18n="navProgress">Progress</a>
+          <a href="dashboard.html" data-i18n="navDashboard">Dashboard</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-pill-group" aria-label="Language selection">
+            <button type="button" class="lang-pill active" data-lang="en">English</button>
+            <button type="button" class="lang-pill" data-lang="te">తెలుగు</button>
+            <button type="button" class="lang-pill" data-lang="hi">हिंदी</button>
+          </div>
+          <button type="button" id="audioToggleBtn" class="audio-toggle-btn" aria-label="Toggle game sound effects">
+            <span id="audioIcon">🔊</span> <span id="audioText">Sound ON</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="container">
+        <!-- 1. Header & Quick Concept Hook -->
+        <section class="savings-hero">
+          <div class="pillar-hero-top">
+            <div class="pillar-hero-title-area">
+              <span class="stage-badge" style="background: rgba(255,255,255,0.2); color: #ffffff;">Pillar 2 of 4</span>
+              <h1 id="savingsHeaderTitle">Save & Manage</h1>
+              <p class="pillar-tagline" id="savingsHeaderTagline">Build Habits, Expect the Unexpected</p>
+            </div>
+            <div class="pillar-header-controls">
+              <div id="emergencyProofBadgeChip" class="badge-status-chip">
+                <span>🔒</span> <span id="badgeChipLabel">Badge: Emergency Proof</span>
+              </div>
+              <div class="badge-status-chip" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff;">
+                <span>⭐</span> <span id="savingsPointsCounter">0 Points</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar & Stepper -->
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
+              <span id="savingsProgressText">Module 2 of 4: 0% Complete</span>
+              <span id="savingsActiveStageLabel">Stage 1: Habit Leak & 48-Hr Rule</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="savingsProgressFill" class="pillar-progress-bar"></div>
+            </div>
+          </div>
+
+          <!-- 4-Stage Stepper Navigation -->
+          <nav class="stepper-nav" aria-label="Pillar stages">
+            <button type="button" class="stepper-step active" data-target="stage1">
+              <span class="stepper-num">1</span>
+              <div>
+                <strong style="display:block;">Habit Leak Discovery</strong>
+                <small style="opacity:0.8;">Chai Leak & 48-Hr Rule</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage2">
+              <span class="stepper-num">2</span>
+              <div>
+                <strong style="display:block;">Rainy Day Challenge</strong>
+                <small style="opacity:0.8;">4-Week Survival Game</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage3">
+              <span class="stepper-num">3</span>
+              <div>
+                <strong style="display:block;">Where to Keep Savings</strong>
+                <small style="opacity:0.8;">Safe vs Unsafe Tools</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage4">
+              <span class="stepper-num">4</span>
+              <div>
+                <strong style="display:block;">Checkpoint & Reward</strong>
+                <small style="opacity:0.8;">Quiz & Emergency Badge</small>
+              </div>
+            </button>
+          </nav>
+        </section>
+
+        <!-- Core Rule Spotlight: "Pay Yourself First" -->
+        <section class="pay-first-banner" aria-label="Core Rule: Pay Yourself First">
+          <div class="pay-first-icon" aria-hidden="true">💎</div>
+          <div>
+            <span class="stage-badge" style="background: #d1fae5; color: #065f46;">Core Financial Law</span>
+            <h2 style="margin: 4px 0 6px; font-size: 1.3rem; color: var(--navy);" id="payFirstTitle">
+              Rule Spotlight: "Pay Yourself First"
+            </h2>
+            <p style="margin: 0; color: #334155; font-size: 0.95rem; line-height: 1.5;" id="payFirstDesc">
+              Most students wait until the end of the month to save whatever cash is left over — which is usually ₹0. 
+              <strong>The golden habit:</strong> The moment your allowance or gift money enters your hands, immediately route a fixed 20% into your Emergency Jar, then spend the rest guilt-free!
+            </p>
+          </div>
+        </section>
+
+        <!-- 2. STAGE 1: The "Habit Leak" Interactive Discovery (2 Minutes) -->
+        <section id="stage1" class="stage-section">
+          <span class="stage-badge">Stage 1 of 4 • Habit Leak Discovery (2 Min)</span>
+          <h2 class="stage-title" id="stage1Title">The "Chai & Snack" Leak Calculator</h2>
+          <p class="stage-desc" id="stage1Desc">
+            Small, unnoticed daily expenses quietly drain student finances. Discover how micro-habits compound over 12 months!
+          </p>
+
+          <div class="leak-calc-container">
+            <!-- Left: Input & Chips -->
+            <div class="leak-input-box">
+              <h3 style="margin: 0; font-size: 1.1rem; color: var(--navy);">Select a Daily Micro-Expense:</h3>
+              <div class="leak-chips-row">
+                <button type="button" class="leak-chip active" data-daily="20" data-label="Cutting Chai & Samosa">
+                  ☕ Cutting Chai & Samosa (₹20/day)
+                </button>
+                <button type="button" class="leak-chip" data-daily="30" data-label="Packaged Chips & Cold Drink">
+                  🥤 Cold Drink & Chips (₹30/day)
+                </button>
+                <button type="button" class="leak-chip" data-daily="50" data-label="Canteen Fried Snacks & Puff">
+                  🍟 Canteen Snack Treat (₹50/day)
+                </button>
+                <button type="button" class="leak-chip" data-daily="80" data-label="Cafe Bubble Tea / Coffee">
+                  🧋 Cafe Bubble Tea / Cold Coffee (₹80/day)
+                </button>
+              </div>
+
+              <div class="input-group">
+                <label for="customDailySlider">
+                  Or adjust custom daily spend: <strong id="customDailyText" style="color: #0f766e;">₹20 / day</strong>
+                </label>
+                <input type="range" id="customDailySlider" min="5" max="150" step="5" value="20" style="accent-color: #0f766e;" />
+              </div>
+            </div>
+
+            <!-- Right: Compound Visualizer -->
+            <div class="compound-total-box">
+              <span class="stage-badge" style="background: #d1fae5; color: #065f46; align-self: flex-start;">
+                Compound Total Visualizer
+              </span>
+              <h3 style="color: #0f3d4c; margin: 8px 0 2px;" id="leakItemHeading">
+                Habit: Cutting Chai & Samosa
+              </h3>
+              <p style="color: #64748b; font-size: 0.85rem; margin: 0 0 12px;">
+                See how innocent daily pocket change compounds:
+              </p>
+
+              <div class="leak-metrics-grid">
+                <div class="leak-metric-card">
+                  <span>Daily Leak</span>
+                  <strong id="leakDailyAmount">₹20</strong>
+                </div>
+                <div class="leak-metric-card">
+                  <span>Monthly Total</span>
+                  <strong id="leakMonthlyAmount">₹600</strong>
+                </div>
+                <div class="leak-metric-card">
+                  <span>Yearly Drain</span>
+                  <strong id="leakYearlyAmount" style="color: #dc2626;">₹7,200</strong>
+                </div>
+              </div>
+
+              <!-- Milestone Comparison Card -->
+              <div class="milestone-compare-card">
+                <span style="font-size: 2.2rem;" aria-hidden="true">🎓</span>
+                <div>
+                  <strong style="color: #065f46; font-size: 0.95rem; display: block;" id="leakMilestoneTitle">
+                    High-Value Student Milestone:
+                  </strong>
+                  <span style="font-size: 0.88rem; color: #334155;" id="leakMilestoneDesc">
+                    That ₹7,200 could fully fund a year of college reference textbooks (₹4,000) PLUS a professional coding certification exam (₹3,000)!
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Part B: The 48-Hour Rule Demo -->
+          <div class="pause-chamber-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <span class="stage-badge" style="background: #fef3c7; color: #92400e;">Impulse Control Tool</span>
+                <h3 style="margin: 4px 0 6px; font-size: 1.25rem; color: var(--navy);" id="rule48Title">
+                  ⏳ The 48-Hour Rule Demo: Eliminate Buyer's Remorse
+                </h3>
+                <p style="margin: 0; color: #475569; font-size: 0.9rem;" id="rule48Subtitle">
+                  Studies show that delaying an impulse purchase by just 48 hours cools emotional brain chemistry and reduces regret purchases by over <strong>70%</strong>!
+                </p>
+              </div>
+              <span class="badge-status-chip" style="background: #fef08a; color: #854d0e; border-color: #facc15;">
+                Reduces Regret by 70%
+              </span>
+            </div>
+
+            <!-- Interactive Impulse Simulation -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-top: 18px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                  <span style="font-size: 2.2rem;" aria-hidden="true">🎧</span>
+                  <div>
+                    <strong style="color: #0f3d4c; font-size: 1.05rem; display: block;">
+                      Impulse Trigger: "RGB Wireless Gaming Earbuds (50% Flash Sale — ₹1,499)!"
+                    </strong>
+                    <span style="font-size: 0.85rem; color: #dc2626; font-weight: 600;">
+                      Urge Level: High (Flash sale countdown ticking!)
+                    </span>
+                  </div>
+                </div>
+                <button type="button" class="button primary-button" id="start48HrPauseBtn" style="background: #0f766e;">
+                  Put Into 48-Hour Pause Chamber ⏳
+                </button>
+              </div>
+
+              <!-- Cooling Gauge -->
+              <div id="feverGaugeSection" style="margin-top: 18px; display: none;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700;">
+                  <span id="pauseHoursText">Hour 0 of 48: High Emotional Craving</span>
+                  <span id="pauseFeverPercent">100% Impulse Heat</span>
+                </div>
+                <div class="fever-gauge-wrap">
+                  <div id="pauseFeverBar" class="fever-gauge-fill"></div>
+                </div>
+                <p id="pauseNarrative" style="font-size: 0.9rem; color: #334155; margin: 0; font-weight: 500;">
+                  Simulating 48 hours of mental cooling...
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. STAGE 2: The Core Game — "Rainy Day Survival Challenge" (5–7 Minutes) -->
+        <section id="stage2" class="stage-section">
+          <span class="stage-badge">Stage 2 of 4 • Core Game: Rainy Day Challenge (5–7 Min)</span>
+          <h2 class="stage-title" id="stage2Title">Rainy Day Survival Challenge: 4 Weeks of Student Life</h2>
+          <p class="stage-desc" id="stage2Desc">
+            You start with a total monthly allowance of <strong>₹2,500</strong>. Divide it between your Daily Spending Wallet and your locked Emergency Jar, then face 4 unexpected real-world crisis cards!
+          </p>
+
+          <!-- Split Decision Controls -->
+          <div class="split-slider-box">
+            <h3 style="margin: 0 0 14px; font-size: 1.15rem; color: var(--navy);">
+              Step 1: The Split Decision — How will you allocate your ₹2,500?
+            </h3>
+
+            <div class="split-jars-display">
+              <div class="jar-card jar-card-wallet">
+                <div class="jar-card-icon" aria-hidden="true">👛</div>
+                <span style="font-size: 0.85rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Daily Spending Wallet</span>
+                <strong id="displayWalletAmount" style="color: #2563eb;">₹1,500 (60%)</strong>
+                <small style="color: #64748b; display: block; margin-top: 4px;">For meals, routine transit & hangouts</small>
+              </div>
+
+              <div class="jar-card jar-card-emergency">
+                <div class="jar-card-icon" aria-hidden="true">🛡️</div>
+                <span style="font-size: 0.85rem; color: #64748b; font-weight: 700; text-transform: uppercase;">Locked Emergency Jar</span>
+                <strong id="displayEmergencyAmount" style="color: #059669;">₹1,000 (40%)</strong>
+                <small style="color: #059669; font-weight: 600; display: block; margin-top: 4px;">Protected shield for sudden crises</small>
+              </div>
+            </div>
+
+            <!-- Allocation Slider -->
+            <div class="input-group" style="margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px;">
+                <span>More to Spending (Risky)</span>
+                <span>Balanced</span>
+                <span>More to Emergency (Ultra-Safe)</span>
+              </div>
+              <input type="range" id="splitJarSlider" min="0" max="2500" step="100" value="1000" style="accent-color: #0f766e; height: 10px;" />
+            </div>
+
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="lang-pill active split-preset-btn" data-emergency="1000">Balanced (₹1,500 / ₹1,000)</button>
+              <button type="button" class="lang-pill split-preset-btn" data-emergency="0">Careless (₹2,500 / ₹0)</button>
+              <button type="button" class="lang-pill split-preset-btn" data-emergency="1500">Cautious (₹1,000 / ₹1,500)</button>
+            </div>
+          </div>
+
+          <!-- Step 2: The Life Happens Engine -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+            <h3 style="margin: 0; font-size: 1.15rem; color: var(--navy);">
+              Step 2: Run the 4-Week "Life Happens" Engine
+            </h3>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="button primary-button" id="startSurvivalBtn">
+                ▶ Start 4-Week Challenge
+              </button>
+              <button type="button" class="button secondary-button" id="resetSurvivalBtn">
+                🔄 Reset & Optimize Buffer
+              </button>
+            </div>
+          </div>
+
+          <!-- 4-Week Cards Grid -->
+          <div class="survival-weeks-grid">
+            <!-- Week 1 -->
+            <div class="survival-week-card" id="weekCard-1">
+              <span class="week-num-badge">Week 1 Event</span>
+              <div style="font-size: 2rem; margin-bottom: 6px;" aria-hidden="true">📱💥</div>
+              <div class="week-event-title">Shattered Phone Screen</div>
+              <div class="week-cost-tag">Unexpected Cost: ₹600</div>
+              <p style="font-size: 0.8rem; color: #475569; margin: 0 0 8px;">
+                Phone slipped on metro stairs; display cracked. Local technician quotes ₹600.
+              </p>
+              <div class="comic-status-pill" id="weekStatus-1" style="display: none;">Pending</div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="survival-week-card" id="weekCard-2">
+              <span class="week-num-badge">Week 2 Event</span>
+              <div style="font-size: 2rem; margin-bottom: 6px;" aria-hidden="true">🎂🍛</div>
+              <div class="week-event-title">Friend's Birthday Dinner</div>
+              <div class="week-cost-tag">Unplanned Cost: ₹350</div>
+              <p style="font-size: 0.8rem; color: #475569; margin: 0 0 8px;">
+                Close friend's birthday celebration treat & group gift contribution.
+              </p>
+              <div class="comic-status-pill" id="weekStatus-2" style="display: none;">Pending</div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="survival-week-card" id="weekCard-3">
+              <span class="week-num-badge">Week 3 Event</span>
+              <div style="font-size: 2rem; margin-bottom: 6px;" aria-hidden="true">💊🤒</div>
+              <div class="week-event-title">Sudden Viral Fever</div>
+              <div class="week-cost-tag">Health Cost: ₹450</div>
+              <p style="font-size: 0.8rem; color: #475569; margin: 0 0 8px;">
+                Doctor clinic consultation, paracetamol blister pack & hydration fluids.
+              </p>
+              <div class="comic-status-pill" id="weekStatus-3" style="display: none;">Pending</div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="survival-week-card" id="weekCard-4">
+              <span class="week-num-badge">Week 4 Event</span>
+              <div style="font-size: 2rem; margin-bottom: 6px;" aria-hidden="true">📄🏆</div>
+              <div class="week-event-title">College Symposium Project</div>
+              <div class="week-cost-tag">Academic Cost: ₹300</div>
+              <p style="font-size: 0.8rem; color: #475569; margin: 0 0 8px;">
+                Mandatory registration fee & poster color printing for annual college tech fest.
+              </p>
+              <div class="comic-status-pill" id="weekStatus-4" style="display: none;">Pending</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Consequence Alert Banner -->
+          <div id="survivalOutcomeBanner" class="consequence-feed-card feed-alert-success" style="display: none;">
+            <span id="survivalOutcomeIcon" style="font-size: 1.8rem;">🛡️</span>
+            <div id="survivalOutcomeText">
+              Adjust your emergency buffer and click "Start 4-Week Challenge" to see how you hold up!
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. STAGE 3: Where to Keep Savings (Safe vs. Unsafe Tools) -->
+        <section id="stage3" class="stage-section">
+          <span class="stage-badge">Stage 3 of 4 • Where to Keep Savings</span>
+          <h2 class="stage-title" id="stage3Title">Safe vs. Unsafe Tools: Where Does Your Money Live?</h2>
+          <p class="stage-desc" id="stage3Desc">
+            Not all savings places are created equal. Compare beginner-friendly storage vehicles to protect your cash from theft, inflation, and impulse leaks!
+          </p>
+
+          <div class="tools-grid">
+            <!-- Tool 1: Cash Box / Mattress -->
+            <div class="tool-card">
+              <span class="tool-tag tool-tag-danger">❌ High Risk</span>
+              <div class="tool-icon-box" aria-hidden="true">📦💵</div>
+              <h3 style="margin: 0 0 6px; font-size: 1.15rem; color: #0f3d4c;">Under the Mattress / Cash Box</h3>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 14px;">
+                Keeping paper currency notes in your study desk, cupboard, or hostel box.
+              </p>
+
+              <div class="tool-attr-row">
+                <span>Theft / Loss Risk:</span>
+                <strong style="color: #dc2626;">Very High (Zero Protection)</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Growth / Interest:</span>
+                <strong style="color: #64748b;">0% (Eaten by inflation)</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Impulse Leak:</span>
+                <strong style="color: #dc2626;">Tempting (Too easy to spend)</strong>
+              </div>
+            </div>
+
+            <!-- Tool 2: Basic Savings Account -->
+            <div class="tool-card">
+              <span class="tool-tag tool-tag-safe">🛡️ Safe & Regulated</span>
+              <div class="tool-icon-box" aria-hidden="true">🏦💳</div>
+              <h3 style="margin: 0 0 6px; font-size: 1.15rem; color: #0f3d4c;">Zero-Balance Savings Account</h3>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 14px;">
+                RBI-regulated bank account (PMJDY style) with zero minimum balance fees.
+              </p>
+
+              <div class="tool-attr-row">
+                <span>Security:</span>
+                <strong style="color: #059669;">Insured up to ₹5 Lakh</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Growth / Interest:</span>
+                <strong style="color: #0f766e;">2.5% – 3.0% Annual</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Access:</span>
+                <strong style="color: #0f3d4c;">Secure UPI & Debit Card</strong>
+              </div>
+            </div>
+
+            <!-- Tool 3: Recurring Deposit (RD) -->
+            <div class="tool-card recommended">
+              <span class="tool-tag tool-tag-power">⭐ Habit Champion</span>
+              <div class="tool-icon-box" aria-hidden="true">🔒📈</div>
+              <h3 style="margin: 0 0 6px; font-size: 1.15rem; color: #0f3d4c;">Recurring Deposit (RD)</h3>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 14px;">
+                Automated monthly lock (₹200–₹500/month) for 6 to 12 months with guaranteed interest.
+              </p>
+
+              <div class="tool-attr-row">
+                <span>Discipline:</span>
+                <strong style="color: #059669;">Automated Savings Habit</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Guaranteed Growth:</span>
+                <strong style="color: #059669;">6.5% – 7.2% Fixed Returns</strong>
+              </div>
+              <div class="tool-attr-row">
+                <span>Impulse Protection:</span>
+                <strong style="color: #059669;">Locked away from cravings!</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive 1-Year Growth Simulator -->
+          <div class="tool-sim-container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
+              <div>
+                <h3 style="margin: 0; font-size: 1.1rem; color: var(--navy);">
+                  1-Year Growth Comparison: See Where Your ₹500/Month Goes
+                </h3>
+                <small style="color: var(--gray);">Total principal deposited over 12 months = ₹6,000</small>
+              </div>
+              <div class="lang-pill-group" style="background: #ffffff;">
+                <button type="button" class="lang-pill rd-sim-pill" data-monthly="300">₹300/mo</button>
+                <button type="button" class="lang-pill active rd-sim-pill" data-monthly="500">₹500/mo</button>
+                <button type="button" class="lang-pill rd-sim-pill" data-monthly="1000">₹1,000/mo</button>
+              </div>
+            </div>
+
+            <div class="leak-metrics-grid" style="margin: 0;">
+              <div class="leak-metric-card">
+                <span>Under Mattress</span>
+                <strong id="mattressTotal" style="color: #64748b;">₹6,000</strong>
+                <small style="color: #dc2626; display: block; margin-top: 4px;">High theft risk, loses to inflation</small>
+              </div>
+              <div class="leak-metric-card">
+                <span>Savings Bank Account</span>
+                <strong id="bankTotal" style="color: #0f766e;">₹6,100</strong>
+                <small style="color: #059669; display: block; margin-top: 4px;">Safe & easily accessible</small>
+              </div>
+              <div class="leak-metric-card" style="border-color: #10b981; background: #f0fdf4;">
+                <span>1-Year Bank RD (7.0%)</span>
+                <strong id="rdTotal" style="color: #047857;">₹6,235</strong>
+                <small style="color: #047857; font-weight: 700; display: block; margin-top: 4px;">+₹235 guaranteed interest + locked habit!</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. STAGE 4: Checkpoint & Badge Unlock -->
+        <section id="stage4" class="stage-section">
+          <span class="stage-badge">Stage 4 of 4 • Checkpoint & Badge Unlock</span>
+          <h2 class="stage-title" id="stage4Title">Stage 4: Practical Checkpoint Quiz</h2>
+          <p class="stage-desc" id="stage4Desc">
+            Demonstrate your mastery of sustainable saving habits and unlock the official "Emergency Proof" badge!
+          </p>
+
+          <div class="checkpoint-quiz-grid">
+            <!-- Question 1 -->
+            <div class="quiz-q-card" data-q="1">
+              <div class="quiz-q-num">Question 1 of 3 • Allocation Strategy</div>
+              <div class="quiz-q-text">
+                You receive a ₹1,000 cash gift for your birthday from relatives. Based on "Pay Yourself First", what is the smartest move?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Spend the entire ₹1,000 immediately on clothes and fast food before it gets lost.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Immediately deposit ₹300–₹400 into your Emergency Jar / Bank account, then enjoy the remaining ₹600 guilt-free.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Lend it to a friend who promises to double it in 3 days.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-q-card" data-q="2">
+              <div class="quiz-q-num">Question 2 of 3 • Impulse Psychology</div>
+              <div class="quiz-q-text">
+                What is the primary psychological purpose of applying the "48-Hour Rule" before purchasing non-essentials?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) To make you feel deprived and miserable so you never buy anything fun.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) To allow impulse emotional spikes to cool down, eliminating buyer's remorse and regret purchases.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) To wait until the store runs out of inventory so you can't buy it.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-q-card" data-q="3">
+              <div class="quiz-q-num">Question 3 of 3 • Storage Security</div>
+              <div class="quiz-q-text">
+                Why is a Recurring Deposit (RD) or zero-balance savings bank account superior to storing cash notes in a study desk drawer?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) It provides regulatory theft protection, earns interest, and builds automated discipline that curtails impulsive spending.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Because banks take away your money if you don't use it.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) A desk drawer is better because you can see the paper cash every morning.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+          </div>
+
+          <!-- Achievement Unlock Box -->
+          <div id="achievementCard" class="achievement-celebration-card" hidden>
+            <div class="badge-art-icon" aria-hidden="true" style="background: linear-gradient(135deg, #059669, #10b981);">🛡️</div>
+            <h3 style="color: #065f46; font-size: 1.6rem; margin: 0 0 8px;">
+              Badge Unlocked: Emergency Proof!
+            </h3>
+            <p style="color: #047857; max-width: 600px; margin: 0 auto 18px; font-size: 1.05rem;">
+              Outstanding achievement! You have mastered the "Pay Yourself First" rule, learned to plug daily habit leaks, and built a bulletproof emergency shield.
+            </p>
+            <div style="display: inline-flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap;">
+              <span class="badge-status-chip unlocked" style="background: #10b981; color: #ffffff;">
+                <span>✨</span> <span>+50 Points Added to Profile!</span>
+              </span>
+              <a href="dashboard.html" class="button secondary-button">
+                View in Progress Dashboard
+              </a>
+            </div>
+          </div>
+
+          <!-- Next Step CTA: Proceed to Pillar 3 -->
+          <div class="next-pillar-btn-card" style="background: linear-gradient(135deg, #0f3d4c 0%, #2563eb 100%);">
+            <div>
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #93c5fd; font-weight: 700;">
+                Next Learning Module
+              </span>
+              <h3 style="margin: 4px 0; color: #ffffff; font-size: 1.4rem;">
+                Pillar 3: Understand Investing
+              </h3>
+              <p style="margin: 0; color: #e2e8f0; font-size: 0.95rem;">
+                Discover compounding, inflation beats, hypothetical market returns, and the power of starting early in your student years!
+              </p>
+            </div>
+            <a href="investing.html" class="button primary-button" style="background: #f0c75e; color: #0f3d4c; font-weight: 700; font-size: 1.05rem;">
+              Proceed to Understand Investing →
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About</h3>
+          <p>MoneySmart helps students build sustainable financial habits in a safe, interactive environment.</p>
+        </div>
+        <div>
+          <h3>Learning Modules</h3>
+          <ul>
+            <li><a href="budget.html">1. Plan & Budget</a></li>
+            <li><a href="savings.html">2. Save & Manage</a></li>
+            <li><a href="investing.html">3. Understand Investing</a></li>
+            <li><a href="safety.html">4. Stay Financially Safe</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Privacy</h3>
+          <p>Demo savings and challenge milestones are preserved locally in your browser.</p>
+        </div>
+        <div>
+          <h3>Disclaimer</h3>
+          <p>This is educational content, not banking or formal investment advice.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="savings.js"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

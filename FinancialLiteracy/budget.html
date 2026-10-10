@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan & Budget | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span data-i18n="brandName">MoneySmart</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" data-i18n="navHome">Home</a>
+          <a href="index.html#progress" data-i18n="navProgress">Progress</a>
+          <a href="dashboard.html" data-i18n="navDashboard">Dashboard</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="lang-pill-group" aria-label="Language selection">
+            <button type="button" class="lang-pill active" data-lang="en">English</button>
+            <button type="button" class="lang-pill" data-lang="te">తెలుగు</button>
+            <button type="button" class="lang-pill" data-lang="hi">हिंदी</button>
+          </div>
+          <button type="button" id="audioToggleBtn" class="audio-toggle-btn" aria-label="Toggle game sound effects">
+            <span id="audioIcon">🔊</span> <span id="audioText">Sound ON</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <div class="container">
+        <!-- 1. Hero Summary & Progress Header -->
+        <section class="pillar-hero">
+          <div class="pillar-hero-top">
+            <div class="pillar-hero-title-area">
+              <span class="stage-badge" style="background: rgba(255,255,255,0.2); color: #ffffff;">Pillar 1 of 4</span>
+              <h1 id="pillarHeaderTitle">Plan & Budget</h1>
+              <p class="pillar-tagline" id="pillarHeaderTagline">Master Your Money Before It Masters You</p>
+            </div>
+            <div class="pillar-header-controls">
+              <div id="budgetBossBadgeChip" class="badge-status-chip">
+                <span>🔒</span> <span id="badgeChipLabel">Badge: Budget Boss</span>
+              </div>
+              <div class="badge-status-chip" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #ffffff;">
+                <span>⭐</span> <span id="pillarPointsCounter">0 Points</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar & Stepper -->
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600;">
+              <span id="pillarProgressText">Module 1 of 4: 0% Complete</span>
+              <span id="pillarActiveStageLabel">Stage 1: Warm-Up</span>
+            </div>
+            <div class="pillar-progress-track">
+              <div id="pillarProgressFill" class="pillar-progress-bar"></div>
+            </div>
+          </div>
+
+          <!-- 4-Stage Stepper Navigation -->
+          <nav class="stepper-nav" aria-label="Pillar stages">
+            <button type="button" class="stepper-step active" data-target="stage1">
+              <span class="stepper-num">1</span>
+              <div>
+                <strong style="display:block;">Concept Warm-Up</strong>
+                <small style="opacity:0.8;">Story & Rapid Sorter</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage2">
+              <span class="stepper-num">2</span>
+              <div>
+                <strong style="display:block;">Core Simulator</strong>
+                <small style="opacity:0.8;">30-Day Budget Lab</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage3">
+              <span class="stepper-num">3</span>
+              <div>
+                <strong style="display:block;">Personal Goal</strong>
+                <small style="opacity:0.8;">Real Target Calculator</small>
+              </div>
+            </button>
+            <button type="button" class="stepper-step" data-target="stage4">
+              <span class="stepper-num">4</span>
+              <div>
+                <strong style="display:block;">Checkpoint & Reward</strong>
+                <small style="opacity:0.8;">Quiz & Boss Badge</small>
+              </div>
+            </button>
+          </nav>
+        </section>
+
+        <!-- Quick Rule of Thumb Banner (50 / 30 / 20 guideline) -->
+        <section class="rule-thumb-card" aria-label="50 / 30 / 20 guideline">
+          <div class="rule-thumb-header">
+            <div>
+              <h2 style="margin: 0; font-size: 1.25rem; color: var(--navy);" id="ruleThumbTitle">
+                ⚡ Quick Rule of Thumb: The 50 / 30 / 20 Guideline
+              </h2>
+              <p style="margin: 4px 0 0; color: var(--gray); font-size: 0.9rem;" id="ruleThumbSubtitle">
+                The golden framework to prevent running out of money before month-end.
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.85rem; color: var(--gray);">See breakdown for:</span>
+              <div class="lang-pill-group" style="background: #f1f5f9; border-color: #cbd5e1;">
+                <button type="button" class="lang-pill active rule-calc-pill" data-amount="3000" style="color: var(--navy);">₹3,000</button>
+                <button type="button" class="lang-pill rule-calc-pill" data-amount="5000" style="color: var(--navy);">₹5,000</button>
+                <button type="button" class="lang-pill rule-calc-pill" data-amount="2000" style="color: var(--navy);">₹2,000</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Color-coded visual bar -->
+          <div class="rule-bars-wrap">
+            <div class="rule-bar-seg rule-bar-needs">50% Needs (<span id="ruleNeedsAmount">₹1,500</span>)</div>
+            <div class="rule-bar-seg rule-bar-wants">30% Wants (<span id="ruleWantsAmount">₹900</span>)</div>
+            <div class="rule-bar-seg rule-bar-savings">20% Savings (<span id="ruleSavingsAmount">₹600</span>)</div>
+          </div>
+
+          <!-- 3 Guideline Breakdown Cards -->
+          <div class="rule-cards-grid">
+            <div class="rule-pill-box rule-pill-needs">
+              <span class="rule-pill-tag">50% Needs (Survival & Study)</span>
+              <strong style="color: #0f766e; font-size: 1.1rem;" id="ruleNeedsCardTitle">Non-Negotiable Essentials</strong>
+              <p style="margin: 0; font-size: 0.85rem; color: #334155;" id="ruleNeedsCardDesc">
+                TSRTC bus pass, college metro smart card, essential mess food, lab manual xerox, monthly mobile study data.
+              </p>
+            </div>
+            <div class="rule-pill-box rule-pill-wants">
+              <span class="rule-pill-tag">30% Wants (Fun & Lifestyle)</span>
+              <strong style="color: #1d4ed8; font-size: 1.1rem;" id="ruleWantsCardTitle">Comforts & Fun</strong>
+              <p style="margin: 0; font-size: 0.85rem; color: #334155;" id="ruleWantsCardDesc">
+                Sandhya RTC X Roads movies, canteen biryani treats, trendy sneakers, online gaming skins, bubble tea.
+              </p>
+            </div>
+            <div class="rule-pill-box rule-pill-savings">
+              <span class="rule-pill-tag">20% Savings (Future Shield)</span>
+              <strong style="color: #a16207; font-size: 1.1rem;" id="ruleSavingsCardTitle">Emergency & Goals</strong>
+              <p style="margin: 0; font-size: 0.85rem; color: #334155;" id="ruleSavingsCardDesc">
+                Entrance exam application fee, emergency health buffer, saving up for college backpack or laptop.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. STAGE 1: The Concept Warm-Up (2 Minutes) -->
+        <section id="stage1" class="stage-section">
+          <span class="stage-badge">Stage 1 of 4 • Concept Warm-Up (2 Min)</span>
+          <h2 class="stage-title" id="stage1Title">Build Your Intuition Before Spending</h2>
+          <p class="stage-desc" id="stage1Desc">
+            Explore Rahul's real-life dilemma in Hyderabad, then test your instinct in the 30-second Rapid Sorter!
+          </p>
+
+          <!-- Micro-Story Comic Strip -->
+          <h3 style="font-size: 1.15rem; color: var(--navy); margin-bottom: 14px;" id="comicStripHeading">
+            📖 Micro-Story: Rahul's Festive Cash Dilemma (Hyderabad)
+          </h3>
+          <div class="comic-strip-grid">
+            <!-- Panel 1 -->
+            <div class="comic-panel">
+              <span class="comic-panel-badge">Panel 1</span>
+              <div class="comic-art-box" aria-hidden="true">🎉💵</div>
+              <div class="comic-speech-bubble">
+                "Grandparents blessed me with <strong>₹2,000 festive cash</strong> for Dussehra! I feel rich!"
+              </div>
+              <div class="comic-panel-caption">The Festival Blessing</div>
+              <p style="font-size: 0.84rem; color: var(--gray); margin: 0 0 10px;">
+                Rahul has ₹2,000 burning a hole in his pocket at home in Hyderabad.
+              </p>
+              <div class="comic-status-pill comic-status-ok">Wallet Balance: ₹2,000 (100% Intact)</div>
+            </div>
+
+            <!-- Panel 2 -->
+            <div class="comic-panel">
+              <span class="comic-panel-badge">Panel 2</span>
+              <div class="comic-art-box" aria-hidden="true">🍿🍛</div>
+              <div class="comic-speech-bubble">
+                "Sandhya RTC X Roads movie (₹450) + Bawarchi Biryani treat (₹450) + online shoe sale (₹900)!"
+              </div>
+              <div class="comic-panel-caption">The Weekend Temptation</div>
+              <p style="font-size: 0.84rem; color: var(--gray); margin: 0 0 10px;">
+                Rahul spent ₹1,800 on weekend fun before checking upcoming college dues.
+              </p>
+              <div class="comic-status-pill comic-status-warn">Spent on Wants: ₹1,800 | Left: ₹200</div>
+            </div>
+
+            <!-- Panel 3 -->
+            <div class="comic-panel">
+              <span class="comic-panel-badge">Panel 3</span>
+              <div class="comic-art-box" aria-hidden="true">🚨🚌</div>
+              <div class="comic-speech-bubble">
+                "Notice board: Lab manual prints (₹600) + Student Bus Pass (₹350) due today! Total = <strong>₹950</strong>. But I only have ₹200?!"
+              </div>
+              <div class="comic-panel-caption">The Monday Reality Check</div>
+              <p style="font-size: 0.84rem; color: var(--gray); margin: 0 0 10px;">
+                Needs are mandatory. Rahul is now stranded with an incomplete lab record.
+              </p>
+              <div class="comic-status-pill comic-status-danger">Crisis Deficit: Short by -₹750</div>
+            </div>
+          </div>
+
+          <div class="comic-takeaway-banner">
+            <span style="font-size: 1.6rem;" aria-hidden="true">💡</span>
+            <div>
+              <strong style="display:block; font-size: 1rem;">The Big Takeaway:</strong>
+              <span>Needs must ALWAYS be funded first. If you spend on Wants first, unexpected Needs will trigger a financial crisis!</span>
+            </div>
+          </div>
+
+          <!-- Rapid Sorter Mini-Game -->
+          <div class="sorter-arena" id="sorterArena">
+            <div class="sorter-meta-row">
+              <div>
+                <h3 style="margin:0; font-size: 1.25rem; color: var(--navy);" id="sorterTitle">
+                  ⚡ "Need vs. Want" Rapid Sorter (30-Sec Mini Game)
+                </h3>
+                <small style="color: var(--gray);">Swipe or click to categorize 5 items before time runs out!</small>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="sorter-streak-pill" id="sorterStreak">
+                  <span>🔥</span> <span id="streakCount">0x Streak</span>
+                </div>
+                <div class="sorter-score-box">
+                  Score: <span id="sorterScore">0</span> / 6
+                </div>
+              </div>
+            </div>
+
+            <!-- Flying Card Stage -->
+            <div class="flying-card-stage" id="flyingCardContainer">
+              <div class="flying-item-card" id="activeFlyingCard">
+                <div class="flying-item-emoji" id="flyingItemEmoji">🚌</div>
+                <div class="flying-item-title" id="flyingItemTitle">TSRTC Bus Pass / Metro Smart Card</div>
+                <div class="flying-item-cost" id="flyingItemCost">Cost: ₹350 / month</div>
+                <p style="color: #64748b; font-size: 0.85rem; margin: 6px 0 0;" id="flyingItemDesc">
+                  Daily travel from Kukatpally to college campus.
+                </p>
+              </div>
+            </div>
+
+            <!-- Sorter Action Buttons -->
+            <div class="sorter-actions-row" id="sorterButtonsGroup">
+              <button type="button" class="sorter-btn sorter-btn-need" id="sortNeedBtn">
+                <span>🟢</span> <span>IT'S A NEED</span>
+              </button>
+              <button type="button" class="sorter-btn sorter-btn-want" id="sortWantBtn">
+                <span>🟣</span> <span>IT'S A WANT</span>
+              </button>
+            </div>
+
+            <div id="sorterFeedbackNotice" style="min-height: 24px; font-weight: 600; font-size: 0.95rem;"></div>
+
+            <!-- Sorter Completed Card (Hidden until finished) -->
+            <div id="sorterCompleteBox" class="sorter-completed-card" hidden>
+              <span style="font-size: 2.8rem;">🎉</span>
+              <h3 style="color: #166534; font-size: 1.3rem; margin: 8px 0;">Rapid Sorter Mastered!</h3>
+              <p style="color: #334155; margin-bottom: 16px;" id="sorterResultMsg">
+                You scored 6/6 and proved you can distinguish essential survival Needs from fun Wants.
+              </p>
+              <div style="display: inline-flex; gap: 12px; align-items: center;">
+                <span class="badge-status-chip" style="background:#dcfce7; color:#166534; border-color:#86efac;">
+                  +15 Points Earned!
+                </span>
+                <button type="button" class="button primary-button" id="proceedToStage2Btn">
+                  Proceed to Core Simulator (Stage 2) ↓
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. STAGE 2: The Core Interactive Simulator (5–7 Minutes) -->
+        <section id="stage2" class="stage-section">
+          <span class="stage-badge">Stage 2 of 4 • Core Interactive Simulator (5–7 Min)</span>
+          <h2 class="stage-title" id="stage2Title">The 30-Day Budget Lab: Make Choices, See Consequences</h2>
+          <p class="stage-desc" id="stage2Desc">
+            Pick a Hyderabad student persona, allocate your fixed digital allowance across weekly expenses, and run the 30-Day Calendar Simulation!
+          </p>
+
+          <!-- Scenario Setup: Persona Selection -->
+          <h3 style="font-size: 1.1rem; color: var(--navy); margin-bottom: 12px;">Step 1: Choose Your Student Persona</h3>
+          <div class="persona-selector-grid">
+            <div class="persona-card active" data-persona="dayscholar" id="personaDayScholar">
+              <div class="persona-card-header">
+                <span class="persona-avatar">🎒</span>
+                <div>
+                  <strong style="font-size: 1.1rem; color: #0f3d4c;">Day Scholar Commuter</strong>
+                  <span class="persona-allowance-badge">Monthly Allowance: ₹3,000</span>
+                </div>
+              </div>
+              <p style="font-size: 0.88rem; color: #475569; margin: 0;">
+                Travels daily from Dilsukhnagar / Kukatpally via TSRTC buses and Hyderabad Metro. Manages transit, college canteen lunch, Xerox project copies, and phone pack.
+              </p>
+            </div>
+
+            <div class="persona-card" data-persona="hosteler" id="personaHostel">
+              <div class="persona-card-header">
+                <span class="persona-avatar">🏢</span>
+                <div>
+                  <strong style="font-size: 1.1rem; color: #0f3d4c;">Hostel Campus Student</strong>
+                  <span class="persona-allowance-badge">Monthly Allowance: ₹4,500</span>
+                </div>
+              </div>
+              <p style="font-size: 0.88rem; color: #475569; margin: 0;">
+                Stays in college hostel. Manages mess food supplement, laundry supplies, study materials, phone recharge, and weekend social outings with hostel mates.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2: Virtual Budget Allocation Sliders -->
+          <h3 style="font-size: 1.1rem; color: var(--navy); margin-bottom: 12px;">Step 2: Allocate Your Virtual Budget</h3>
+          
+          <div class="sim-live-meter">
+            <div class="sim-meter-card">
+              <span>Total Allowance</span>
+              <strong id="simAllowanceTotal">₹3,000</strong>
+            </div>
+            <div class="sim-meter-card">
+              <span>Total Allocated</span>
+              <strong id="simAllocatedTotal" style="color: #0f766e;">₹2,500</strong>
+            </div>
+            <div class="sim-meter-card">
+              <span>Projected Savings Buffer</span>
+              <strong id="simBufferTotal" style="color: #166534;">+₹500</strong>
+            </div>
+          </div>
+
+          <div class="sim-expense-sliders">
+            <!-- 1. Commute -->
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <div>
+                  <strong>🚌 Commute & Travel (Bus pass, metro card, autos)</strong>
+                  <small style="display:block; color: #64748b;">Category: Need</small>
+                </div>
+                <strong id="simCommuteVal" style="color: #0f766e; font-size: 1.1rem;">₹450</strong>
+              </div>
+              <input type="range" class="sim-slider-input" id="simCommuteSlider" min="0" max="1500" step="50" value="450" />
+            </div>
+
+            <!-- 2. Food & Canteen -->
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <div>
+                  <strong>🍱 Food & College Canteen (Lunch, tea, daily snacks)</strong>
+                  <small style="display:block; color: #64748b;">Category: Need / Essential</small>
+                </div>
+                <strong id="simFoodVal" style="color: #0f766e; font-size: 1.1rem;">₹900</strong>
+              </div>
+              <input type="range" class="sim-slider-input" id="simFoodSlider" min="0" max="2500" step="50" value="900" />
+            </div>
+
+            <!-- 3. Study Material -->
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <div>
+                  <strong>📚 Study Material, Lab Manuals & Xerox Prints</strong>
+                  <small style="display:block; color: #64748b;">Category: Need (Academic)</small>
+                </div>
+                <strong id="simStudyVal" style="color: #0f766e; font-size: 1.1rem;">₹400</strong>
+              </div>
+              <input type="range" class="sim-slider-input" id="simStudySlider" min="0" max="1200" step="50" value="400" />
+            </div>
+
+            <!-- 4. Phone Pack -->
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <div>
+                  <strong>📶 Phone & Internet Recharge (Online classes & study portals)</strong>
+                  <small style="display:block; color: #64748b;">Category: Need</small>
+                </div>
+                <strong id="simPhoneVal" style="color: #0f766e; font-size: 1.1rem;">₹300</strong>
+              </div>
+              <input type="range" class="sim-slider-input" id="simPhoneSlider" min="0" max="800" step="50" value="300" />
+            </div>
+
+            <!-- 5. Weekend Outings -->
+            <div class="sim-slider-row">
+              <div class="sim-slider-header">
+                <div>
+                  <strong>🍿 Weekend Outings & Hangouts (Movies, cafe treats, shopping)</strong>
+                  <small style="display:block; color: #64748b;">Category: Want</small>
+                </div>
+                <strong id="simOutingsVal" style="color: #2563eb; font-size: 1.1rem;">₹450</strong>
+              </div>
+              <input type="range" class="sim-slider-input" id="simOutingsSlider" min="0" max="2500" step="50" value="450" />
+            </div>
+          </div>
+
+          <!-- Step 3: Run 30-Day Simulation & Consequence Feed -->
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 18px;">
+            <button type="button" class="button primary-button" id="runSimulationBtn" style="font-size: 1rem;">
+              ▶ Run 30-Day Simulation
+            </button>
+            <button type="button" class="button secondary-button" id="resetSimBtn">
+              🔄 Try Again / Reset
+            </button>
+            <span style="font-size: 0.85rem; color: var(--gray);">Watch how choices play out over 30 days!</span>
+          </div>
+
+          <!-- 30-Day Calendar Strip -->
+          <div class="calendar-sim-box" id="calendarSimBox">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <strong style="color: #0f3d4c; font-size: 1rem;">30-Day Live Calendar Timeline</strong>
+              <small id="simDayIndicator" style="color: var(--gray); font-weight: 600;">Day 0 of 30</small>
+            </div>
+
+            <div class="calendar-days-strip" id="calendarDaysGrid">
+              <!-- 30 day cells generated dynamically -->
+            </div>
+
+            <!-- Dynamic Consequence Feed -->
+            <div id="consequenceFeedCard" class="consequence-feed-card feed-alert-success" style="display:none;">
+              <span id="consequenceFeedIcon" style="font-size: 1.6rem;">💡</span>
+              <div id="consequenceFeedText">
+                Adjust sliders and click "Run 30-Day Simulation" to see if your budget survives unexpected college events.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. STAGE 3: The Personal Goal Calculator -->
+        <section id="stage3" class="stage-section">
+          <span class="stage-badge">Stage 3 of 4 • The Personal Goal Calculator</span>
+          <h2 class="stage-title" id="stage3Title">Bridge Simulation to Your Real Life</h2>
+          <p class="stage-desc" id="stage3Desc">
+            Now transition from fictional characters to your personal reality. What is one real financial goal you want to fund?
+          </p>
+
+          <div class="goal-tool-grid">
+            <!-- Form Input Side -->
+            <div>
+              <h3 style="font-size: 1.1rem; color: var(--navy); margin-bottom: 10px;">Quick Suggestions for Students:</h3>
+              <div class="goal-chips-group">
+                <button type="button" class="goal-chip active" data-goal="Entrance Test Registration Fee" data-cost="1200" data-months="3">
+                  🎓 Entrance Test Fee (₹1,200)
+                </button>
+                <button type="button" class="goal-chip" data-goal="College Reference Books" data-cost="800" data-months="2">
+                  📚 Reference Books (₹800)
+                </button>
+                <button type="button" class="goal-chip" data-goal="Durable College Backpack" data-cost="1500" data-months="4">
+                  🎒 College Backpack (₹1,500)
+                </button>
+                <button type="button" class="goal-chip" data-goal="Laptop Contribution Fund" data-cost="6000" data-months="6">
+                  💻 Laptop Fund (₹6,000)
+                </button>
+              </div>
+
+              <form id="personalGoalForm" novalidate style="margin-top: 18px;">
+                <div class="input-group">
+                  <label for="goalTitleInput">Field 1: What do you want to fund?</label>
+                  <input type="text" id="goalTitleInput" value="Entrance Test Registration Fee" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="goalCostInput">Field 2: Target Cost (₹)</label>
+                  <input type="number" id="goalCostInput" min="100" step="50" value="1200" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="goalTimeframeInput">Field 3: Target Timeframe</label>
+                  <select id="goalTimeframeInput">
+                    <option value="1">1 Month (4 Weeks)</option>
+                    <option value="2">2 Months (8 Weeks)</option>
+                    <option value="3" selected>3 Months (12 Weeks)</option>
+                    <option value="6">6 Months (26 Weeks)</option>
+                    <option value="12">12 Months (52 Weeks)</option>
+                  </select>
+                </div>
+
+                <button type="button" class="button primary-button" id="saveGoalToProfileBtn" style="width: 100%;">
+                  💾 Save This Goal to My MoneySmart Profile
+                </button>
+              </form>
+            </div>
+
+            <!-- Auto Plan Generator Output -->
+            <div class="goal-target-plan-box">
+              <span class="stage-badge" style="background:#ccfbf1; color:#0f766e; align-self: flex-start;">
+                Auto Plan Generator
+              </span>
+              <h3 style="color: #0f3d4c; margin: 10px 0 4px;" id="planGoalHeading">
+                Goal: Entrance Test Registration Fee
+              </h3>
+              <p style="color: #64748b; font-size: 0.88rem; margin: 0 0 16px;">
+                Target: <strong id="planGoalCostText">₹1,200</strong> in <strong id="planGoalMonthsText">3 Months</strong>
+              </p>
+
+              <div class="plan-rate-grid">
+                <div class="plan-rate-card">
+                  <span>Daily Set Aside</span>
+                  <strong id="planDailyTarget">₹14 / day</strong>
+                </div>
+                <div class="plan-rate-card">
+                  <span>Weekly Set Aside</span>
+                  <strong id="planWeeklyTarget">₹100 / week</strong>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border-radius: 12px; padding: 14px; border: 1px dashed #99f6e4; text-align: center;">
+                <span style="font-size: 1.8rem;" aria-hidden="true">🥤</span>
+                <p style="margin: 6px 0 0; font-size: 0.9rem; color: #0f766e; font-weight: 600;" id="planHabitEquivalent">
+                  "Save ₹14 per day (₹100 per week) to hit your goal on time. That's just skipping 1 bottled soft drink every 2 days!"
+                </p>
+              </div>
+
+              <div id="goalSavedNotice" style="margin-top: 14px; font-size: 0.88rem; color: #166534; font-weight: 700; text-align: center;" hidden>
+                ✅ Goal saved to your MoneySmart account! It will appear on your Progress Dashboard.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. STAGE 4: Quiz Check & Achievement Reward -->
+        <section id="stage4" class="stage-section">
+          <span class="stage-badge">Stage 4 of 4 • Quiz Check & Achievement</span>
+          <h2 class="stage-title" id="stage4Title">Stage 4: Quiz Check & Achievement Reward</h2>
+          <p class="stage-desc" id="stage4Desc">
+            Answer the 3 scenario questions below to confirm your comprehension and unlock the prestigious "Budget Boss" badge!
+          </p>
+
+          <div class="checkpoint-quiz-grid">
+            <!-- Question 1 -->
+            <div class="quiz-q-card" data-q="1">
+              <div class="quiz-q-num">Question 1 of 3 • Real Student Scenario</div>
+              <div class="quiz-q-text">
+                You have ₹500 left for the month, and you need ₹300 for college lab printouts tomorrow. Friends invite you to an evening movie (₹350). What is the smartest move?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Go to the movie and ask parents for extra money tomorrow.</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Pay for the lab printouts first (Need), and suggest a free or cheap hangout instead (Want).</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Skip the lab submission because printouts are too expensive.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-q-card" data-q="2">
+              <div class="quiz-q-num">Question 2 of 3 • The Golden Guideline</div>
+              <div class="quiz-q-text">
+                Under the standard 50 / 30 / 20 guideline, what proportion of your total income should be reserved for essential living and study Needs?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) 20%</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) 30%</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) 50%</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-q-card" data-q="3">
+              <div class="quiz-q-num">Question 3 of 3 • Emergency Preparedness</div>
+              <div class="quiz-q-text">
+                An unexpected emergency occurs (e.g. phone screen cracks or urgent travel is needed) and cash is tight. Which expense category do you trim down first?
+              </div>
+              <button type="button" class="quiz-opt-btn" data-opt="a">
+                <span>A) Wants (dining out, streaming subscriptions, leisure shopping).</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="b">
+                <span>B) Needs (daily food, student bus pass, essential medicines).</span>
+              </button>
+              <button type="button" class="quiz-opt-btn" data-opt="c">
+                <span>C) Take high-interest debt without cutting any lifestyle expenses.</span>
+              </button>
+              <div class="quiz-feedback-box" hidden></div>
+            </div>
+          </div>
+
+          <!-- Achievement Unlock Box (Initially hidden) -->
+          <div id="achievementCard" class="achievement-celebration-card" hidden>
+            <div class="badge-art-icon" aria-hidden="true">🏆</div>
+            <h3 style="color: #854d0e; font-size: 1.6rem; margin: 0 0 8px;">
+              Badge Unlocked: Budget Boss!
+            </h3>
+            <p style="color: #713f12; max-width: 600px; margin: 0 auto 18px; font-size: 1.05rem;">
+              Outstanding work! You've successfully completed the four-stage "Plan & Budget" pillar, mastered the 50/30/20 guideline, and earned your first official MoneySmart badge!
+            </p>
+            <div style="display: inline-flex; gap: 14px; align-items: center; justify-content: center; flex-wrap: wrap;">
+              <span class="badge-status-chip unlocked">
+                <span>✨</span> <span>+50 Points Added to Profile!</span>
+              </span>
+              <a href="dashboard.html" class="button secondary-button">
+                View in Progress Dashboard
+              </a>
+            </div>
+          </div>
+
+          <!-- Next Step CTA: Proceed to Pillar 2 -->
+          <div class="next-pillar-btn-card">
+            <div>
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #a7f3d0; font-weight: 700;">
+                Next Learning Module
+              </span>
+              <h3 style="margin: 4px 0; color: #ffffff; font-size: 1.4rem;">
+                Pillar 2: Save & Manage
+              </h3>
+              <p style="margin: 0; color: #e2e8f0; font-size: 0.95rem;">
+                Learn compound emergency cushions, automated savings buckets, and how to protect your money against inflation.
+              </p>
+            </div>
+            <a href="savings.html" class="button primary-button" style="background: #f0c75e; color: #0f3d4c; font-weight: 700; font-size: 1.05rem;">
+              Proceed to Save & Manage →
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About</h3>
+          <p>MoneySmart helps students practice real-world money decisions in a safe, educational environment.</p>
+        </div>
+        <div>
+          <h3>Learning Modules</h3>
+          <ul>
+            <li><a href="budget.html">1. Plan & Budget</a></li>
+            <li><a href="savings.html">2. Save & Manage</a></li>
+            <li><a href="investing.html">3. Understand Investing</a></li>
+            <li><a href="safety.html">4. Stay Financially Safe</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Privacy</h3>
+          <p>Progress is saved in your browser and linked to your profile.</p>
+        </div>
+        <div>
+          <h3>Disclaimer</h3>
+          <p>This is educational content, not financial or banking advice.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="budget.js"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

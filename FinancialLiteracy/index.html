@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MoneySmart is a beginner-friendly financial literacy platform for students. Learn budgeting, saving, investing and scam safety through interactive activities."
+    />
+    <title>MoneySmart | Financial Literacy</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="appHeader" class="site-header" hidden>
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span data-i18n="brandName">MoneySmart</span>
+        </a>
+
+        <nav id="appNavigation" class="main-nav" aria-label="Main navigation" hidden>
+          <a href="index.html" data-i18n="navHome">Home</a>
+          <a href="index.html#progress" data-i18n="navProgress">Progress</a>
+          <a href="dashboard.html" data-i18n="navDashboard">Dashboard</a>
+        </nav>
+
+        <div id="appNavActions" class="nav-actions" hidden>
+          <button id="signOutButton" class="button tertiary-button" type="button">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="auth-section" id="account">
+        <div class="container auth-card">
+          <div class="section-heading">
+            <h1>MoneySmart</h1>
+          </div>
+
+          <form id="authForm" class="auth-form">
+            <div class="input-group">
+              <label for="authEmail">Gmail / email address</label>
+              <input id="authEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="input-group">
+              <label for="authPassword">Password</label>
+              <input id="authPassword" name="password" type="password" autocomplete="current-password" minlength="8" required />
+              <small id="passwordHint" class="auth-hint" hidden>Password must be at least 8 characters and include an uppercase letter, a number, and a special character.</small>
+            </div>
+            <button id="authSubmit" class="button primary-button" type="submit">Sign in</button>
+            <button id="authModeToggle" class="auth-mode-toggle" type="button">Need an account? Create one</button>
+          </form>
+
+          <p id="authStatus" class="auth-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <div id="learningContent" hidden>
+      <section class="hero-section journey-hero">
+        <div class="container journey-hero-content">
+          <div class="hero-content">
+            <a class="button primary-button" href="learning.html" data-i18n="startLearningBtnSecondary">Start Learning</a>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">
+              Learn to budget, save, understand investing and stay safe from financial scams through fun, interactive activities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="progress" class="progress-preview section-card">
+        <div class="container progress-preview-inner">
+          <div>
+            <p class="eyebrow" data-i18n="progressPreviewLabel">Progress preview</p>
+            <h2 data-i18n="progressPreviewHeading">Track your learning</h2>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-box">
+              <span class="summary-label" data-i18n="completedModulesLabel">Completed modules</span>
+              <strong id="completedModulesCount">0</strong>
+            </div>
+            <div class="summary-box">
+              <span class="summary-label" data-i18n="pointsLabel">Total points</span>
+              <strong id="totalPointsCount">0</strong>
+            </div>
+            <div class="summary-box">
+              <span class="summary-label" data-i18n="badgesLabel">Earned badges</span>
+              <strong id="badgeCount">0</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

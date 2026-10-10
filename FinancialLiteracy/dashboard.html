@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress Dashboard | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="alternate icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">₹</span>
+          <span>MoneySmart</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="index.html#progress">Progress</a>
+          <a href="dashboard.html" class="active">Dashboard</a>
+        </nav>
+
+        <div class="nav-actions">
+          <label class="language-toggle" for="languageSelector">
+            <span>Language</span>
+            <select id="languageSelector" aria-label="Choose language">
+              <option value="en">English</option>
+              <option value="te">తెలుగు</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-shell">
+      <section class="container">
+        <div id="dashboardEmptyState" class="empty-state" hidden>
+          <h1>No demo progress yet</h1>
+          <p>Your learning journey is still empty. Start a module to begin building healthy financial habits.</p>
+        </div>
+
+        <div id="dashboardContent">
+          <div class="dashboard-grid">
+            <div class="dashboard-metric">
+              <span>Total learning points</span>
+              <strong id="dashboardPoints">0</strong>
+            </div>
+            <div class="dashboard-metric">
+              <span>Completed modules</span>
+              <strong id="dashboardModules">0</strong>
+            </div>
+            <div class="dashboard-metric">
+              <span>Quiz score</span>
+              <strong id="dashboardQuizScore">0%</strong>
+            </div>
+            <div class="dashboard-metric">
+              <span>Savings progress</span>
+              <strong id="dashboardSavings">0%</strong>
+            </div>
+          </div>
+
+          <div class="dashboard-panels">
+            <section class="panel">
+              <h2>Module progress</h2>
+              <div id="moduleProgressList" class="module-progress-list"></div>
+            </section>
+
+            <aside class="panel">
+              <h2>Earned badges</h2>
+              <ul id="badgeList" class="badges-list"></ul>
+              <div id="suggestedActivity" class="info-box"></div>
+              <div class="button-row" style="margin-top: 18px;">
+                <button id="resetProgressBtn" class="button secondary-button" type="button">Reset Demo Progress</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About</h3>
+          <p>This dashboard shows demo progress stored in the browser only.</p>
+        </div>
+        <div>
+          <h3>Learning Modules</h3>
+          <ul>
+            <li><a href="budget.html">Budget</a></li>
+            <li><a href="savings.html">Savings</a></li>
+            <li><a href="investing.html">Investing</a></li>
+            <li><a href="safety.html">Safety</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Privacy</h3>
+          <p>Demo progress is local to this browser and can be cleared.</p>
+        </div>
+        <div>
+          <h3>Disclaimer</h3>
+          <p>The dashboard tracks learning practice only, not real financial records.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>
