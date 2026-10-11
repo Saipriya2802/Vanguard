@@ -118,13 +118,14 @@ function userDocument(user) {
 }
 
 async function saveUserData(fields) {
-  if (!currentUser || !userDataReady) return;
+  if (!currentUser || !userDataReady) return false;
   await setDoc(userDocument(currentUser), {
     uid: currentUser.uid,
     email: currentUser.email,
     ...fields,
     updatedAt: serverTimestamp(),
   }, { merge: true });
+  return true;
 }
 
 function setAccountMode(createAccount) {
@@ -197,10 +198,13 @@ if (configIsMissing) {
 
   window.MoneySmartFirebase = {
     saveProgress(progress) {
-      if (currentUser) {
-        void saveUserData({ progress, savingsGoal: progress.savingsGoal || null })
-          .catch(reportCloudError);
-      }
+      if (!currentUser) return Promise.resolve('local');
+      return saveUserData({ progress, savingsGoal: progress.savingsGoal || null })
+        .then((saved) => saved ? 'synced' : 'local')
+        .catch((error) => {
+          reportCloudError(error);
+          return 'failed';
+        });
     },
   };
 

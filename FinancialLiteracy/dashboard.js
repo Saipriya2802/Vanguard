@@ -51,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const labels = {
       'budget-planner': 'Budget Planner',
       'savings-star': 'Savings Star',
+      'crisis-navigator': 'Crisis Navigator',
+      'budgeting-master': 'Budgeting Basics Mastery',
+      'emergency-funds-master': 'Emergency Funds Mastery',
+      'digital-scam-safety-master': 'Digital Scam Safety Mastery',
       'scam-detective': 'Scam Detective',
       'learning-champion': 'Learning Champion',
     };
@@ -97,7 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
     dashboardContent.hidden = false;
 
     document.getElementById('dashboardPoints').textContent = String(progress.points || 0);
+    document.getElementById('dashboardCoins').textContent = String(progress.goldenCoins || 0);
     document.getElementById('dashboardModules').textContent = String((progress.completedModules || []).length);
+    const knowledgeXP = Number(progress.knowledgeXP || 0);
+    const knowledgeXPProgress = document.getElementById('knowledgeXpProgress');
+    const knowledgeXPValue = Math.min(knowledgeXP, 300);
+    knowledgeXPProgress.setAttribute('aria-valuenow', String(knowledgeXPValue));
+    knowledgeXPProgress.querySelector('span').style.width = `${(knowledgeXPValue / 300) * 100}%`;
+    document.getElementById('knowledgeXpText').textContent = `${knowledgeXP} / 300 XP`;
 
     const quizScores = Array.isArray(progress.quizScores) && progress.quizScores.length > 0 ? progress.quizScores : [0];
     const latestQuizScore = Math.max(...quizScores);

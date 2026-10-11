@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Practice budgeting, emergency savings, and digital scam safety with MoneySmart topic quizzes." />
+    <title>Quizzes | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span>MoneySmart</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="learning.html">Learning</a>
+          <a href="dashboard.html">Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell quiz-hub">
+      <div class="container">
+        <section class="quiz-hub-heading">
+          <p class="eyebrow">Practice what you know</p>
+          <h1>Financial Literacy Quizzes</h1>
+          <p>Choose a topic. Get instant feedback after each answer. Pass with at least 2 correct answers to earn that topic’s rewards once.</p>
+          <p class="quiz-wallet" aria-live="polite">🪙 Golden Coins Wallet: <strong id="quizWallet">0</strong></p>
+        </section>
+
+        <section id="quizTopicHub" aria-label="Choose a quiz topic">
+          <div class="quiz-topic-grid">
+            <button class="quiz-topic-card" type="button" data-topic="budgeting">
+              <span class="quiz-topic-icon" aria-hidden="true">🧾</span>
+              <strong>Budgeting Basics</strong>
+              <span>Plan an allowance around needs, goals, and everyday spending.</span>
+              <span class="quiz-topic-status" data-topic-status="budgeting">5 questions</span>
+            </button>
+            <button class="quiz-topic-card" type="button" data-topic="emergency">
+              <span class="quiz-topic-icon" aria-hidden="true">🛟</span>
+              <strong>Emergency Funds</strong>
+              <span>Make a plan for unexpected costs without derailing daily needs.</span>
+              <span class="quiz-topic-status" data-topic-status="emergency">3 questions</span>
+            </button>
+            <button class="quiz-topic-card" type="button" data-topic="scams">
+              <span class="quiz-topic-icon" aria-hidden="true">📱</span>
+              <strong>Digital Scam Safety</strong>
+              <span>Spot suspicious UPI requests, OTP tricks, and urgent messages.</span>
+              <span class="quiz-topic-status" data-topic-status="scams">3 questions</span>
+            </button>
+          </div>
+        </section>
+
+        <section id="activeQuiz" class="active-quiz" aria-live="polite" hidden>
+          <div class="active-quiz-header">
+            <div>
+              <p class="eyebrow" id="quizTopicLabel"></p>
+              <h2 id="quizQuestionCount"></h2>
+            </div>
+            <button id="backToQuizTopics" class="button secondary-button" type="button">All topics</button>
+          </div>
+          <p id="quizLoading" class="quiz-loading" role="status" hidden>Preparing questions for this topic…</p>
+          <p id="quizSourceNotice" class="quiz-feedback" role="status" hidden></p>
+          <p id="quizLoadError" class="quiz-load-error" role="alert" hidden>
+            Questions could not be generated. Check the server setup and try again.
+            <button id="retryQuizGeneration" class="button secondary-button" type="button">Try again</button>
+          </p>
+          <div id="quizContent" hidden>
+          <div class="quiz-progress-track" aria-hidden="true"><span id="quizProgressFill"></span></div>
+          <h3 id="quizQuestion" class="quiz-question"></h3>
+          <div id="quizOptions" class="quiz-options" role="group" aria-label="Answer choices"></div>
+          <p id="quizFeedback" class="quiz-feedback" role="status" aria-live="polite" hidden></p>
+          <button id="nextQuizQuestion" class="button primary-button" type="button" hidden>Next question</button>
+          </div>
+        </section>
+
+        <section id="quizResult" class="quiz-result-card" aria-live="polite" hidden>
+          <p class="eyebrow">Topic result</p>
+          <h2 id="quizResultTitle"></h2>
+          <p id="quizResultScore" class="quiz-result-score"></p>
+          <div class="quiz-reward-summary">
+            <p>🪙 Golden Coins earned <strong id="quizResultCoins">0</strong></p>
+            <p>⭐ Knowledge XP added <strong id="quizResultXP">0</strong></p>
+            <p id="quizResultBadge" hidden></p>
+          </div>
+          <p id="quizResultNote"></p>
+          <div class="quiz-result-actions">
+            <button id="returnToTopics" class="button secondary-button" type="button">Back to quizzes</button>
+            <a class="button primary-button" href="dashboard.html">Return to Main Dashboard</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="quizzes.js?v=7"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

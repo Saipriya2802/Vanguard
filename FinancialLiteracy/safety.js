@@ -1,218 +1,71 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const questions = [
-    {
-      question: 'You receive a message saying you won ₹10,000, but you must share your OTP to claim the prize. What should you do?',
-      options: [
-        'Share the OTP immediately.',
-        'Click the link and provide bank details.',
-        'Never share the OTP and verify the message through a trusted source.',
-        'Forward the OTP to a friend.',
-      ],
-      answer: 2,
-      explanation: 'A one-time password must never be shared. Suspicious prize claims should always be verified independently.'
+  const translations = {
+    en: {
+      eyebrow: 'Money basics • Module 4 of 4',
+      title: 'Stay Financially Safe',
+      lead: 'Pause, verify, and protect your personal and payment information.',
+      otpTitle: 'Keep OTPs and PINs private',
+      otpText: 'Never share your OTP, UPI PIN, password, or card security code—even with someone claiming to be from a bank.',
+      verifyTitle: 'Verify before you click or pay',
+      verifyText: 'Avoid unexpected links and QR codes. Open the official app or website yourself and confirm payment requests independently.',
+      pauseTitle: 'Pause when someone pressures you',
+      pauseText: 'Urgent threats, prize claims, and requests to install screen-sharing apps are warning signs. Stop and speak to someone you trust.',
+      reportTitle: 'If you lose money to a cyber scam',
+      reportText: 'Contact your bank using its official number and report financial cyber fraud promptly by calling India’s helpline 1930 or visiting cybercrime.gov.in.',
+      finishedTitle: 'You’ve reached the end of the learning modules',
+      dashboardLink: 'View your learning progress',
     },
-    {
-      question: 'A link asks you to log in to update your account details. What is the safest action?',
-      options: [
-        'Click it immediately.',
-        'Open the official app or website directly from your browser.',
-        'Reply with your password.',
-        'Share the link with others.',
-      ],
-      answer: 1,
-      explanation: 'Always type the official website address or use your trusted app instead of clicking suspicious links.'
+    te: {
+      eyebrow: 'డబ్బు ప్రాథమికాలు • మాడ్యూల్ 4 / 4',
+      title: 'ఆర్థికంగా సురక్షితంగా ఉండండి',
+      lead: 'ఆగి ఆలోచించండి, ధృవీకరించండి, మీ వ్యక్తిగత మరియు చెల్లింపు సమాచారాన్ని కాపాడుకోండి.',
+      otpTitle: 'OTPలు, PINలను గోప్యంగా ఉంచండి',
+      otpText: 'బ్యాంకు నుంచి అని చెప్పేవారితో సహా ఎవరితోనూ OTP, UPI PIN, పాస్‌వర్డ్ లేదా కార్డు సెక్యూరిటీ కోడ్‌ను పంచుకోకండి.',
+      verifyTitle: 'క్లిక్ లేదా చెల్లింపుకు ముందు ధృవీకరించండి',
+      verifyText: 'అనుకోని లింకులు, QR కోడ్‌లను నివారించండి. అధికారిక యాప్ లేదా వెబ్‌సైట్‌ను మీరే తెరిచి, చెల్లింపు అభ్యర్థనలను ధృవీకరించండి.',
+      pauseTitle: 'ఎవరైనా తొందరపెడితే ఆగండి',
+      pauseText: 'తక్షణ బెదిరింపులు, బహుమతి వాగ్దానాలు, స్క్రీన్ షేరింగ్ యాప్‌లను ఇన్‌స్టాల్ చేయమనే అభ్యర్థనలు హెచ్చరికలు. ఆగి, నమ్మకమైన వారితో మాట్లాడండి.',
+      reportTitle: 'సైబర్ మోసంలో డబ్బు పోతే',
+      reportText: 'బ్యాంకు అధికారిక నంబర్‌కు సంప్రదించండి. భారతదేశంలో ఆర్థిక సైబర్ మోసాన్ని వెంటనే 1930 హెల్ప్‌లైన్‌కు కాల్ చేసి లేదా cybercrime.gov.inలో నివేదించండి.',
+      finishedTitle: 'మీరు అభ్యాస మాడ్యూళ్లను పూర్తి చేశారు',
+      dashboardLink: 'మీ అభ్యాస ప్రగతిని చూడండి',
     },
-    {
-      question: 'A message asks for your bank details to process a refund. What should you do?',
-      options: [
-        'Share the details to get the refund.',
-        'Ignore the message and confirm with the official institution.',
-        'Send the details through WhatsApp.',
-        'Call the sender from the message itself.',
-      ],
-      answer: 1,
-      explanation: 'Never share bank details without verifying the request through official contact information.'
+    hi: {
+      eyebrow: 'पैसों की बुनियादी बातें • मॉड्यूल 4 / 4',
+      title: 'वित्तीय रूप से सुरक्षित रहें',
+      lead: 'रुकें, जांचें और अपनी निजी तथा भुगतान जानकारी की सुरक्षा करें।',
+      otpTitle: 'OTP और PIN गोपनीय रखें',
+      otpText: 'किसी के साथ भी OTP, UPI PIN, पासवर्ड या कार्ड सुरक्षा कोड साझा न करें—भले ही वह बैंक से होने का दावा करे।',
+      verifyTitle: 'क्लिक या भुगतान से पहले जांचें',
+      verifyText: 'अनजान लिंक और QR कोड से बचें। आधिकारिक ऐप या वेबसाइट खुद खोलें और भुगतान अनुरोधों की स्वतंत्र रूप से पुष्टि करें।',
+      pauseTitle: 'दबाव डालने पर रुकें',
+      pauseText: 'तुरंत धमकी, इनाम का दावा और स्क्रीन-शेयरिंग ऐप इंस्टॉल करने के अनुरोध चेतावनी के संकेत हैं। रुकें और किसी भरोसेमंद व्यक्ति से बात करें।',
+      reportTitle: 'साइबर धोखाधड़ी में पैसे खोने पर',
+      reportText: 'बैंक के आधिकारिक नंबर पर संपर्क करें और भारत में वित्तीय साइबर धोखाधड़ी की तुरंत हेल्पलाइन 1930 पर कॉल करके या cybercrime.gov.in पर रिपोर्ट करें।',
+      finishedTitle: 'आपने सभी सीखने के मॉड्यूल पूरे कर लिए हैं',
+      dashboardLink: 'अपनी सीखने की प्रगति देखें',
     },
-    {
-      question: 'Which password habit is the safest?',
-      options: [
-        'Use the same password everywhere.',
-        'Use a short, memorable password.',
-        'Create a unique password and do not share it.',
-        'Write your password on a note beside your device.',
-      ],
-      answer: 2,
-      explanation: 'Unique, strong passwords reduce the risk of multiple accounts being hacked at once.'
-    },
-    {
-      question: 'What is a warning sign of a suspicious job offer?',
-      options: [
-        'Clear job details and a real company name.',
-        'A request for payment before work begins.',
-        'An interview process with proper communication.',
-        'A formal contract from a known company.',
-      ],
-      answer: 1,
-      explanation: 'A request for upfront payment is a common scam pattern. Always verify the opportunity independently.'
-    },
-    {
-      question: 'A person pressures you to pay immediately for a loan or service. What should you do?',
-      options: [
-        'Pay at once to avoid missing out.',
-        'Ask for time to think and verify the source.',
-        'Share your OTP to confirm the payment.',
-        'Send money to a new contact without checking.',
-      ],
-      answer: 1,
-      explanation: 'Pressure and urgency are common scam tactics. A careful pause helps you protect your money.'
-    },
-    {
-      question: 'What is the safest way to make a digital payment?',
-      options: [
-        'Use a trusted payment app or official bank channel.',
-        'Send money to a random person asking for help.',
-        'Share your UPI PIN with family and friends.',
-        'Save your PIN in a message.',
-      ],
-      answer: 0,
-      explanation: 'Use only trusted and official channels, and keep your payment details private.'
-    },
-    {
-      question: 'A message asks you to click a link to claim a reward. What is the best response?',
-      options: [
-        'Click the link and enter your details.',
-        'Ignore it and verify the offer through a trusted source.',
-        'Send the message to everyone you know.',
-        'Reply with your password to confirm identity.',
-      ],
-      answer: 1,
-      explanation: 'When an offer seems too good to be true, independent verification is the safer choice.'
-    },
-    {
-      question: 'Which habit helps protect your personal information online?',
-      options: [
-        'Sharing your password with a trusted friend.',
-        'Checking if the website address is official and secure before entering details.',
-        'Accepting every pop-up message.',
-        'Giving your OTP to anyone who claims to be from support.',
-      ],
-      answer: 1,
-      explanation: 'Careful verification of websites and requests helps protect your information and reduces scam risk.'
-    },
-    {
-      question: 'A friend asks you for your OTP to help them log in quickly. What should you do?',
-      options: [
-        'Share it immediately because they are a friend.',
-        'Never share the OTP and explain that it is a security risk.',
-        'Reply with your password instead.',
-        'Forward the OTP to a group chat.',
-      ],
-      answer: 1,
-      explanation: 'OTPs and passwords are private. Sharing them can give others access to your accounts.'
-    }
-  ];
+  };
 
-  let currentQuestionIndex = 0;
-  let score = 0;
-  let selectedAnswers = [];
+  let language = localStorage.getItem('moneysmart-language') || 'en';
 
-  const questionText = document.getElementById('questionText');
-  const optionsContainer = document.getElementById('optionsContainer');
-  const nextQuestionBtn = document.getElementById('nextQuestionBtn');
-  const restartQuizBtn = document.getElementById('restartQuizBtn');
-  const quizResult = document.getElementById('quizResult');
-  const quizProgressText = document.getElementById('quizProgressText');
-  const scoreText = document.getElementById('scoreText');
+  function applyLanguage(selectedLanguage) {
+    language = translations[selectedLanguage] ? selectedLanguage : 'en';
+    if (window.MoneySmart) window.MoneySmart.setLanguage(language);
 
-  function renderQuestion() {
-    const question = questions[currentQuestionIndex];
-    questionText.textContent = question.question;
-    quizProgressText.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-    scoreText.textContent = `Score: ${score}`;
-    optionsContainer.innerHTML = '';
-
-    question.options.forEach((option, index) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'option-button';
-      button.textContent = option;
-      button.setAttribute('aria-pressed', 'false');
-
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.option-button').forEach((item) => {
-          item.classList.remove('selected');
-          item.setAttribute('aria-pressed', 'false');
-        });
-
-        button.classList.add('selected');
-        button.setAttribute('aria-pressed', 'true');
-        selectedAnswers[currentQuestionIndex] = index;
-      });
-
-      optionsContainer.appendChild(button);
+    document.querySelectorAll('.lang-pill[data-lang]').forEach((button) => {
+      button.classList.toggle('active', button.dataset.lang === language);
     });
-
-    nextQuestionBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'Finish Quiz' : 'Next Question';
+    document.querySelectorAll('[data-safety-key]').forEach((element) => {
+      const translatedText = translations[language][element.dataset.safetyKey];
+      if (translatedText) element.textContent = translatedText;
+    });
+    document.documentElement.lang = language;
   }
 
-  function finishQuiz() {
-    const correctAnswers = questions.filter((question, index) => selectedAnswers[index] === question.answer).length;
-    const percent = Math.round((correctAnswers / questions.length) * 100);
-    const passed = percent >= 70;
-
-    quizResult.hidden = false;
-    quizResult.innerHTML = `
-      <h3>Quiz complete</h3>
-      <p>You scored ${percent}% (${correctAnswers} out of ${questions.length}).</p>
-      <p>${passed ? 'Great work! You passed this safety quiz.' : 'You are learning—keep practising and revisit the questions you missed.'}</p>
-      <ul>
-        ${questions.map((question, index) => `<li><strong>Q${index + 1}:</strong> ${question.explanation}</li>`).join('')}
-      </ul>
-    `;
-
-    if (passed) {
-      window.MoneySmart.completeModule('safety', 20);
-      const currentProgress = window.MoneySmart.getProgress();
-      currentProgress.safetyQuizPass = true;
-      window.MoneySmart.saveProgress(currentProgress);
-    }
-
-    document.getElementById('quizArea').style.display = 'none';
-    restartQuizBtn.hidden = false;
-    nextQuestionBtn.hidden = true;
-  }
-
-  nextQuestionBtn.addEventListener('click', () => {
-    const selectedIndex = selectedAnswers[currentQuestionIndex];
-    if (typeof selectedIndex !== 'number') {
-      quizResult.hidden = false;
-      quizResult.textContent = 'Please select one answer before moving to the next question.';
-      return;
-    }
-
-    if (questions[currentQuestionIndex].answer === selectedIndex) {
-      score += 1;
-    }
-
-    if (currentQuestionIndex < questions.length - 1) {
-      currentQuestionIndex += 1;
-      renderQuestion();
-      quizResult.hidden = true;
-    } else {
-      finishQuiz();
-    }
+  document.querySelectorAll('.lang-pill[data-lang]').forEach((button) => {
+    button.addEventListener('click', () => applyLanguage(button.dataset.lang));
   });
 
-  restartQuizBtn.addEventListener('click', () => {
-    currentQuestionIndex = 0;
-    score = 0;
-    selectedAnswers = [];
-    quizResult.hidden = true;
-    nextQuestionBtn.hidden = false;
-    restartQuizBtn.hidden = true;
-    document.getElementById('quizArea').style.display = 'block';
-    renderQuestion();
-  });
-
-  renderQuestion();
+  applyLanguage(language);
 });

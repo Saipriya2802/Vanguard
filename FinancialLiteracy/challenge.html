@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Choose how to handle an unexpected phone repair in The Phone Screen Shock." />
+    <title>The Phone Screen Shock | MoneySmart</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a href="index.html" class="brand" aria-label="MoneySmart home page">
+          <span class="brand-mark">₹</span>
+          <span>MoneySmart</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="learning.html">Learning</a>
+          <a href="dashboard.html">Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-shell challenge-page">
+      <div class="container challenge-container">
+        <section class="challenge-card" aria-labelledby="challenge-title">
+          <p class="challenge-eyebrow">Emergency savings challenge</p>
+          <h1 id="challenge-title">📱 The Phone Screen Shock</h1>
+          <p class="challenge-intro">You have <strong>₹600</strong> left for the rest of the month. Your phone screen cracks unexpectedly, and the repair costs <strong>₹500</strong>.</p>
+
+          <div class="challenge-choice-grid" id="challengeChoices">
+            <button class="challenge-choice" type="button" data-choice="cash">
+              <span class="challenge-choice-label">Choice A · Risky</span>
+              <strong>Pay ₹500 from your remaining monthly budget</strong>
+            </button>
+            <button class="challenge-choice" type="button" data-choice="buffer">
+              <span class="challenge-choice-label">Choice B · Smart</span>
+              <strong>Pay ₹300 from your saved emergency buffer and ₹200 from your remaining budget</strong>
+            </button>
+          </div>
+
+          <section id="challengeResult" class="challenge-result" aria-live="polite" hidden>
+            <h2 id="challengeResultTitle"></h2>
+            <p id="challengeResultText"></p>
+            <p id="challengeLesson" class="challenge-lesson"></p>
+            <p id="challengeReward" class="challenge-reward" hidden></p>
+            <button id="challengeRetry" class="button primary-button" type="button" hidden>Try Again</button>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="challenge.js?v=4"></script>
+    <script type="module" src="firebase.js"></script>
+  </body>
+</html>

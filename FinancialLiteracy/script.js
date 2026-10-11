@@ -4,6 +4,9 @@
 
   const defaultProgress = {
     points: 0,
+    goldenCoins: 0,
+    knowledgeXP: 0,
+    quizTopicRewards: [],
     completedModules: [],
     badges: [],
     language: 'en',
@@ -238,21 +241,23 @@
       completedModules: Array.isArray(progress.completedModules) ? progress.completedModules : [],
       badges: Array.isArray(progress.badges) ? progress.badges : [],
       quizScores: Array.isArray(progress.quizScores) ? progress.quizScores : [],
+      quizTopicRewards: Array.isArray(progress.quizTopicRewards) ? progress.quizTopicRewards : [],
     };
   }
 
   function saveProgress(progress) {
     safeStorageSet(STORAGE_KEY, progress);
     if (window.MoneySmartFirebase) {
-      window.MoneySmartFirebase.saveProgress(progress);
+      return window.MoneySmartFirebase.saveProgress(progress);
     }
+    return Promise.resolve('local');
   }
 
   function saveSavingsGoal(goal) {
     safeStorageSet('moneysmart-savings-goal', goal);
     const progress = getProgress();
     progress.savingsGoal = goal;
-    saveProgress(progress);
+    return saveProgress(progress);
   }
 
   function resetProgress() {
@@ -348,6 +353,10 @@
       'budget-planner': 'Budget Boss',
       'emergency-proof': 'Emergency Proof',
       'savings-star': 'Emergency Proof',
+      'crisis-navigator': 'Crisis Navigator',
+      'budgeting-master': 'Budgeting Basics Mastery',
+      'emergency-funds-master': 'Emergency Funds Mastery',
+      'digital-scam-safety-master': 'Digital Scam Safety Mastery',
       'market-master': 'Market Master',
       'scam-detective': 'Scam Detective',
       'learning-champion': 'Learning Champion',
